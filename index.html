@@ -226,24 +226,16 @@
     #printArea{display:block !important;}
   }
 
-  /* ✅ تعديل 1: منع الصفحات الفارغة بين الأقسام */
   .p-page{
     width:210mm;
     min-height:297mm;
     padding:14mm 14mm 16mm 14mm;
     margin:0 auto;
     background:#fff;
+    page-break-after:always;
     position:relative;
-
-    /* بدل page-break-after:always فقط */
-    break-after: page;
-    page-break-after: always;
   }
-  .p-page:last-child,
-  .p-page:last-of-type{
-    break-after: auto;
-    page-break-after: auto;
-  }
+  .p-page:last-child{page-break-after:auto}
 
   .p-header{
     display:flex;
@@ -300,7 +292,6 @@
     color:#0f172a;font-size:18px;font-weight:800;
   }
 
-  /* ✅ تعديل 2: تكبير عنوان القسم وجعله في منتصف الصفحة */
   .p-sectionTitle{
     margin-top:12mm;
     text-align:center;
@@ -312,7 +303,7 @@
   .p-sectionTitle h2{
     margin:0;
     color:var(--blue);
-    font-size:34px;          /* ✅ كبير */
+    font-size:34px;
     font-weight:800;
     letter-spacing:.3px;
   }
@@ -438,13 +429,13 @@
         <div id="thumbs_ads" class="thumbs"></div>
       </div>
 
-      <!-- ✅ يظهر فقط في الصفحة الرئيسية، ولن يظهر في الطباعة -->
+      <!-- يظهر فقط في الصفحة الرئيسية، ولن يظهر في الطباعة -->
       <div class="signature">برمجة وتنفيذ الأستاذ مقرن المطيري</div>
     </div>
   </div>
 </div>
 
-<!-- ✅ منطقة الطباعة فقط -->
+<!-- منطقة الطباعة فقط -->
 <div id="printArea"></div>
 
 <script>
@@ -536,7 +527,7 @@
     }catch(e){}
   }
 
-  // يبني PDF نظيف: غلاف + صور (كل صورة صفحة)
+  // ✅ تعديل المطلوب: عنوان القسم يظهر مرة واحدة فقط لأول صورة بالقسم
   function buildPrint(){
     state.info.teacher = document.getElementById("teacher").value.trim();
     state.info.principal = document.getElementById("principal").value.trim();
@@ -593,12 +584,23 @@
       {k:"ads", t:"الإعلانات"}
     ];
 
-    // صور الأقسام: كل صورة = صفحة
+    // صور الأقسام: كل صورة صفحة — العنوان مرة واحدة فقط
     for(const sec of order){
       const imgs = state.sections[sec.k] || [];
-      for(const src of imgs){
+      for(let i=0; i<imgs.length; i++){
+        const src = imgs[i];
+
         const page = document.createElement("div");
         page.className = "p-page";
+
+        // ✅ يظهر عنوان القسم فقط في أول صفحة من القسم
+        const sectionTitleBlock = (i === 0) ? `
+          <div class="p-sectionTitle">
+            <h2>${sec.t}</h2>
+            <span class="who">${escapeHtml(state.info.teacher || "")}</span>
+          </div>
+        ` : "";
+
         page.innerHTML = `
           <div class="p-header">
             <img src="${moeLogo}" alt="وزارة التعليم">
@@ -609,10 +611,7 @@
             <img src="${schLogo}" alt="شعار المدرسة">
           </div>
 
-          <div class="p-sectionTitle">
-            <h2>${sec.t}</h2>
-            <span class="who">${escapeHtml(state.info.teacher || "")}</span>
-          </div>
+          ${sectionTitleBlock}
 
           <div class="p-imgBox">
             <img src="${src}" alt="صورة">
