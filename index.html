@@ -13,200 +13,355 @@
     --blue2:#123b78;
     --gold:#d6b25e;
     --border:#e5e7eb;
-    --muted:#6b7280;
+    --muted:#64748b;
     --bg:#f3f4f6;
   }
   *{box-sizing:border-box}
-  body{font-family:'Tajawal',sans-serif;background:var(--bg);margin:0;padding:18px}
+  body{font-family:'Tajawal',sans-serif;background:var(--bg);margin:0;padding:16px}
 
-  /* ===== Screen App ===== */
+  /* ====== واجهة الموقع ====== */
   .app{
-    max-width:1100px;
-    margin:auto;
-    background:#fff;
-    border-radius:18px;
-    padding:18px;
+    max-width:1100px;margin:auto;background:#fff;border-radius:18px;padding:16px;
   }
-  .topbar{
-    display:flex;align-items:center;justify-content:space-between;gap:12px;
-    padding:14px 14px 18px;border-bottom:3px solid var(--blue);
-  }
-  .topbar img{
-    height:62px;width:auto;object-fit:contain;background:#fff;border-radius:12px;
-    padding:6px;border:1px solid var(--border)
-  }
-  .title{text-align:center;flex:1}
-  .title h1{margin:0;font-size:26px;color:var(--blue);font-weight:800}
-  .title p{margin:6px 0 0;color:var(--muted);font-size:13px}
 
-  .grid{
-    display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px;
+  .hero{
+    background:linear-gradient(135deg,#ffffff, #f8fafc);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:16px;
   }
-  @media(min-width:900px){ .grid{grid-template-columns:380px 1fr} }
+
+  .heroTop{
+    display:grid;
+    grid-template-columns:90px 1fr 90px;
+    gap:12px;
+    align-items:center;
+  }
+  .heroTop img{
+    width:90px;height:90px;object-fit:contain;
+    background:#fff;border:1px solid var(--border);border-radius:18px;padding:10px;
+  }
+  .heroTop .center{
+    text-align:center;
+  }
+  .heroTop h1{
+    margin:0;color:var(--blue);font-weight:800;font-size:28px;
+  }
+  .heroTop p{
+    margin:8px 0 0;color:var(--muted);font-size:14px;
+  }
+
+  .divider{height:4px;background:var(--blue);border-radius:999px;margin:14px 0 0}
+
+  .layout{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+    margin-top:14px;
+  }
+  @media(min-width:900px){
+    .layout{grid-template-columns:420px 1fr}
+  }
 
   .card{
     border:1px solid var(--border);
-    border-radius:16px;
+    border-radius:18px;
     padding:14px;
     background:#fff;
   }
-  .card h2{margin:0 0 12px;color:var(--blue);font-size:16px}
+  .card h2{
+    margin:0 0 12px;
+    color:var(--blue);
+    font-size:18px;
+    font-weight:800;
+  }
 
-  /* ✅ FIXED FORM LAYOUT */
+  /* ✅ الفورم مرتب للجوال: label فوق input دائمًا */
   .form{
-    display:flex;
-    flex-direction:column;
+    display:grid;
     gap:12px;
   }
-  .field{
-    display:flex;
-    flex-direction:column; /* mobile: label فوق input */
-    gap:6px;
-  }
   .field label{
+    display:block;
     font-weight:800;
-    font-size:13px;
+    font-size:14px;
     color:#0f172a;
+    margin-bottom:6px;
   }
   .field input{
     width:100%;
     padding:12px 12px;
     border:1px solid #cfcfcf;
-    border-radius:12px;
+    border-radius:14px;
     font-family:'Tajawal';
-    font-size:14px;
+    font-size:15px;
   }
 
-  @media(min-width:640px){
-    .field{
-      flex-direction:row;      /* desktop: label يمين + input يسار */
-      align-items:center;
-      gap:10px;
-    }
-    .field label{
-      min-width:120px;
-      text-align:right;
-      margin:0;
-      white-space:nowrap;
-    }
-    .field input{ flex:1 }
+  .btns{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+    margin-top:12px;
+  }
+  @media(min-width:520px){
+    .btns{grid-template-columns:1fr 1fr 1.2fr}
   }
 
-  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
   button{
-    border:none;border-radius:14px;padding:12px 14px;font-family:'Tajawal';
-    cursor:pointer;font-size:14px
+    border:none;border-radius:16px;
+    padding:14px 12px;
+    font-family:'Tajawal';
+    cursor:pointer;
+    font-size:15px;
+    font-weight:800;
   }
   .b-save{background:#16a34a;color:#fff}
   .b-clear{background:#dc2626;color:#fff}
-  .b-print{background:#1e40af;color:#fff;flex:1}
-  .note{font-size:12px;color:var(--muted);margin-top:8px}
+  .b-print{background:#1e40af;color:#fff}
+
+  .hint{
+    margin-top:10px;
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.7;
+  }
 
   .section{
     border:1px solid var(--border);
-    border-radius:16px;
+    border-radius:18px;
     padding:14px;
     background:#fff;
     margin-bottom:14px;
   }
-  .section-head{
-    display:flex;justify-content:space-between;align-items:center;gap:10px;
+  .sectionHead{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
     border-bottom:2px solid var(--gold);
-    padding-bottom:10px;margin-bottom:12px;
+    padding-bottom:10px;
+    margin-bottom:12px;
   }
-  .section-head h3{margin:0;color:var(--blue);font-size:18px}
-  .section-head span{font-size:12px;color:var(--muted)}
+  .sectionHead h3{
+    margin:0;color:var(--blue);font-size:18px;font-weight:800;
+  }
+  .sectionHead span{
+    font-size:12px;color:var(--muted);
+  }
 
-  .upload{
-    border:2px dashed #cbd5e1;border-radius:14px;padding:14px;background:#f9fafb;text-align:center;
+  .uploadBox{
+    border:2px dashed #cbd5e1;
+    border-radius:16px;
+    padding:14px;
+    background:#f9fafb;
+    text-align:center;
   }
-  .upload input{display:none}
-  .upload label{display:block;cursor:pointer;font-weight:700;color:#334155}
-  .upload small{display:block;margin-top:6px;color:var(--muted);font-weight:400}
+  .uploadBox label{
+    display:block;
+    cursor:pointer;
+    font-weight:800;
+    color:#334155;
+  }
+  .uploadBox small{
+    display:block;
+    margin-top:6px;
+    color:var(--muted);
+    font-weight:400;
+  }
+  .uploadBox input{display:none}
 
   .thumbs{
-    display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-    gap:12px;margin-top:12px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    gap:12px;
+    margin-top:12px;
   }
   .thumb{
-    border:1px solid var(--border);border-radius:14px;padding:8px;background:#fff;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:8px;
+    background:#fff;
   }
-  .thumb img{width:100%;height:140px;object-fit:cover;border-radius:10px}
-  .actions{display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  .thumb img{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+    border-radius:12px;
+  }
+  .actions{
+    display:flex;
+    gap:6px;
+    justify-content:center;
+    margin-top:8px;
+    flex-wrap:wrap;
+  }
   .mini{
-    padding:6px 10px;border-radius:12px;font-size:12px;background:#eef2ff;border:1px solid #c7d2fe;color:#1e40af
+    padding:7px 10px;
+    border-radius:14px;
+    font-size:12px;
+    background:#eef2ff;
+    border:1px solid #c7d2fe;
+    color:#1e40af;
+    font-weight:800;
   }
-  .danger{background:#fee2e2;border-color:#fecaca;color:#b91c1c}
-
-  .footer{
-    text-align:center;margin-top:16px;color:#6b7280;font-size:12px;
+  .danger{
+    background:#fee2e2;
+    border-color:#fecaca;
+    color:#b91c1c;
   }
 
-  /* ===== Print Area ===== */
+  .signature{
+    text-align:center;
+    margin-top:14px;
+    color:#64748b;
+    font-size:12px;
+  }
+
+  /* ====== الطباعة ====== */
   #printArea{display:none}
+
   @media print{
     body{background:#fff;padding:0}
-    .app{display:none !important}
-    #printArea{display:block !important}
+    .app{display:none !important;}
+    #printArea{display:block !important;}
   }
 
   .p-page{
-    width:210mm;min-height:297mm;padding:14mm;margin:0 auto;background:#fff;position:relative;
+    width:210mm;
+    min-height:297mm;
+    padding:14mm 14mm 16mm 14mm;
+    margin:0 auto;
+    background:#fff;
     page-break-after:always;
+    position:relative;
   }
   .p-page:last-child{page-break-after:auto}
 
   .p-header{
-    display:flex;align-items:center;justify-content:space-between;gap:10px;
-    padding-bottom:10mm;border-bottom:2px solid var(--blue);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    border-bottom:2px solid var(--blue);
+    padding-bottom:8mm;
   }
-  .p-header img{height:22mm;width:auto;object-fit:contain}
-  .p-header .p-title{text-align:center;flex:1}
-  .p-header .p-title h1{margin:0;font-size:22px;color:var(--blue);font-weight:800}
-  .p-header .p-title p{margin:6px 0 0;font-size:12px;color:#475569}
+  .p-header img{
+    height:22mm;width:auto;object-fit:contain;
+  }
+  .p-header .mid{
+    text-align:center;flex:1;
+  }
+  .p-header .mid h1{
+    margin:0;color:var(--blue);font-size:22px;font-weight:800;
+  }
+  .p-header .mid p{
+    margin:6px 0 0;color:#475569;font-size:12px;
+  }
 
-  .p-section-title{
-    margin-top:12mm;display:flex;align-items:flex-end;justify-content:space-between;
-    border-bottom:2px solid var(--gold);padding-bottom:4mm;
+  .p-coverBox{
+    margin-top:10mm;
+    border:2px solid var(--blue);
+    border-radius:18px;
+    overflow:hidden;
   }
-  .p-section-title h2{margin:0;color:var(--blue);font-size:18px;font-weight:800}
+  .p-coverTop{
+    background:linear-gradient(135deg,var(--blue),var(--blue2));
+    color:#fff;
+    text-align:center;
+    padding:10mm;
+  }
+  .p-coverTop .big{
+    font-size:18px;font-weight:800;
+  }
+  .p-coverGrid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    background:#fff;
+  }
+  .p-cell{
+    padding:9mm 6mm;
+    text-align:center;
+    border-top:1px solid #e5e7eb;
+    border-left:1px solid #e5e7eb;
+  }
+  .p-cell:last-child{border-left:none}
+  .p-cell .k{
+    color:#64748b;font-size:12px;font-weight:800;margin-bottom:6px;
+  }
+  .p-cell .v{
+    color:#0f172a;font-size:18px;font-weight:800;
+  }
 
-  .p-image-box{
-    margin-top:10mm;height:235mm;display:flex;align-items:center;justify-content:center;
-    border:1px solid #e5e7eb;border-radius:14px;padding:6mm;
+  .p-sectionTitle{
+    margin-top:12mm;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    border-bottom:2px solid var(--gold);
+    padding-bottom:4mm;
   }
-  .p-image-box img{max-width:100%;max-height:100%;object-fit:contain}
+  .p-sectionTitle h2{
+    margin:0;color:var(--blue);font-size:18px;font-weight:800;
+  }
+  .p-sectionTitle .who{
+    color:#64748b;font-size:11px;font-weight:800;
+  }
+
+  .p-imgBox{
+    margin-top:10mm;
+    height:235mm;
+    border:1px solid #e5e7eb;
+    border-radius:16px;
+    padding:6mm;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .p-imgBox img{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+  }
+
+  .p-foot{
+    position:absolute;
+    bottom:8mm;left:0;right:0;
+    text-align:center;
+    color:#94a3b8;
+    font-size:10px;
+    font-weight:700;
+  }
 </style>
 </head>
 
 <body>
 
 <div class="app">
-  <div class="topbar">
-    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/FybNzBQEoqkSKFnG.png" alt="شعار وزارة التعليم">
-    <div class="title">
-      <h1>الملف الإلكتروني للمعلم</h1>
-      <p>ارفع صور الأقسام ثم اطبع واحفظ PDF بشكل رسمي</p>
+  <div class="hero">
+    <div class="heroTop">
+      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/AdvEaEhDMUJTLIgK.png" alt="شعار المدرسة">
+      <div class="center">
+        <h1>الملف الإلكتروني للمعلم</h1>
+        <p>تنظيم ورفع صور الخطط والسجلات ثم حفظها بصيغة PDF</p>
+      </div>
+      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/FybNzBQEoqkSKFnG.png" alt="شعار وزارة التعليم">
     </div>
-    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/AdvEaEhDMUJTLIgK.png" alt="شعار المدرسة">
+    <div class="divider"></div>
   </div>
 
-  <div class="grid">
+  <div class="layout">
     <div class="card">
       <h2>بيانات الملف</h2>
 
-      <!-- ✅ مرتب على الجوال -->
       <div class="form">
         <div class="field">
           <label for="teacher">اسم المعلم</label>
           <input id="teacher" type="text" placeholder="مثال: مقرن المطيري">
         </div>
-
         <div class="field">
           <label for="principal">اسم مدير المدرسة</label>
           <input id="principal" type="text" placeholder="مثال: توفيق العقيلي">
         </div>
-
         <div class="field">
           <label for="school">اسم المدرسة</label>
           <input id="school" type="text" placeholder="مثال: مدرسة الإمام الشوكاني">
@@ -219,13 +374,16 @@
         <button class="b-print" onclick="preparePrint()">طباعة / حفظ PDF</button>
       </div>
 
-      <div class="note">البيانات محفوظة على جهازك فقط.</div>
+      <div class="hint">
+        • البيانات والصور محفوظة على جهازك داخل المتصفح فقط.<br>
+        • للطباعة: اضغط (طباعة/حفظ PDF) ثم اختر (حفظ كـ PDF).
+      </div>
     </div>
 
     <div>
       <div class="section">
-        <div class="section-head"><h3>الخطة الفصلية</h3><span>ترتيب ⬆️⬇️</span></div>
-        <div class="upload">
+        <div class="sectionHead"><h3>الخطة الفصلية</h3><span>ترتيب الصور ⬆️⬇️</span></div>
+        <div class="uploadBox">
           <label for="f_term">رفع صور الخطة الفصلية</label>
           <small>يمكن رفع أكثر من صورة</small>
           <input id="f_term" type="file" multiple accept="image/*">
@@ -234,8 +392,8 @@
       </div>
 
       <div class="section">
-        <div class="section-head"><h3>الخطة الأسبوعية</h3><span>ترتيب ⬆️⬇️</span></div>
-        <div class="upload">
+        <div class="sectionHead"><h3>الخطة الأسبوعية</h3><span>ترتيب الصور ⬆️⬇️</span></div>
+        <div class="uploadBox">
           <label for="f_week">رفع صور الخطة الأسبوعية</label>
           <small>يمكن رفع أكثر من صورة</small>
           <input id="f_week" type="file" multiple accept="image/*">
@@ -244,8 +402,8 @@
       </div>
 
       <div class="section">
-        <div class="section-head"><h3>سجلات المتابعة</h3><span>ترتيب ⬆️⬇️</span></div>
-        <div class="upload">
+        <div class="sectionHead"><h3>سجلات المتابعة</h3><span>ترتيب الصور ⬆️⬇️</span></div>
+        <div class="uploadBox">
           <label for="f_records">رفع صور سجلات المتابعة</label>
           <small>يمكن رفع أكثر من صورة</small>
           <input id="f_records" type="file" multiple accept="image/*">
@@ -254,8 +412,8 @@
       </div>
 
       <div class="section">
-        <div class="section-head"><h3>الإعلانات</h3><span>ترتيب ⬆️⬇️</span></div>
-        <div class="upload">
+        <div class="sectionHead"><h3>الإعلانات</h3><span>ترتيب الصور ⬆️⬇️</span></div>
+        <div class="uploadBox">
           <label for="f_ads">رفع صور الإعلانات</label>
           <small>يمكن رفع أكثر من صورة</small>
           <input id="f_ads" type="file" multiple accept="image/*">
@@ -263,31 +421,34 @@
         <div id="thumbs_ads" class="thumbs"></div>
       </div>
 
-      <div class="footer">برمجة وتنفيذ الأستاذ مقرن المطيري</div>
+      <!-- ✅ يظهر فقط في الصفحة الرئيسية، ولن يظهر في الطباعة -->
+      <div class="signature">برمجة وتنفيذ الأستاذ مقرن المطيري</div>
     </div>
   </div>
 </div>
 
+<!-- ✅ منطقة الطباعة فقط -->
 <div id="printArea"></div>
 
 <script>
-  const STORAGE_KEY = "teacher_e_file_layout_fix";
+  const STORAGE_KEY = "teacher_e_file_clean_print_v1";
 
   const state = {
-    info:{teacher:"",principal:"",school:""},
-    sections:{term:[],week:[],records:[],ads:[]}
+    info:{teacher:"", principal:"", school:""},
+    sections:{term:[], week:[], records:[], ads:[]}
   };
 
   function fileToDataURL(file){
     return new Promise(res=>{
-      const r=new FileReader();
-      r.onload=()=>res(r.result);
+      const r = new FileReader();
+      r.onload = ()=> res(r.result);
       r.readAsDataURL(file);
     });
   }
 
-  async function handleUpload(key,files){
-    for(const f of [...files]){
+  async function handleUpload(key, files){
+    const list = Array.from(files || []);
+    for(const f of list){
       const src = await fileToDataURL(f);
       state.sections[key].push(src);
     }
@@ -295,40 +456,46 @@
   }
 
   function renderThumbs(key){
-    const box=document.getElementById("thumbs_"+key);
-    box.innerHTML="";
+    const box = document.getElementById("thumbs_"+key);
+    box.innerHTML = "";
     state.sections[key].forEach((src,i)=>{
-      box.innerHTML+=`
+      box.innerHTML += `
         <div class="thumb">
-          <img src="${src}">
+          <img src="${src}" alt="صورة">
           <div class="actions">
             <button class="mini" onclick="moveImg('${key}',${i},-1)">⬆️</button>
-            <button class="mini" onclick="moveImg('${key}',${i},1)">⬇️</button>
+            <button class="mini" onclick="moveImg('${key}',${i}, 1)">⬇️</button>
             <button class="mini danger" onclick="delImg('${key}',${i})">حذف</button>
           </div>
-        </div>`;
+        </div>
+      `;
     });
   }
 
-  function moveImg(key,i,d){
-    const a=state.sections[key];
-    const n=i+d;
-    if(n<0||n>=a.length)return;
-    [a[i],a[n]]=[a[n],a[i]];
+  function moveImg(key, idx, dir){
+    const arr = state.sections[key];
+    const ni = idx + dir;
+    if(ni < 0 || ni >= arr.length) return;
+    const [x] = arr.splice(idx,1);
+    arr.splice(ni,0,x);
     renderThumbs(key);
   }
 
-  function delImg(key,i){
-    state.sections[key].splice(i,1);
+  function delImg(key, idx){
+    state.sections[key].splice(idx,1);
     renderThumbs(key);
   }
 
   function saveData(){
-    state.info.teacher=teacher.value.trim();
-    state.info.principal=principal.value.trim();
-    state.info.school=school.value.trim();
-    localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
-    alert("تم الحفظ");
+    state.info.teacher = document.getElementById("teacher").value.trim();
+    state.info.principal = document.getElementById("principal").value.trim();
+    state.info.school = document.getElementById("school").value.trim();
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      alert("تم حفظ البيانات");
+    }catch(e){
+      alert("لم يتم الحفظ: الصور كثيرة/كبيرة على التخزين. قلّل الصور أو لا تستخدم الحفظ.");
+    }
   }
 
   function clearData(){
@@ -339,74 +506,130 @@
   }
 
   function loadData(){
-    const raw=localStorage.getItem(STORAGE_KEY);
-    if(!raw)return;
-    const d=JSON.parse(raw);
-    Object.assign(state,d);
-    teacher.value=state.info.teacher||"";
-    principal.value=state.info.principal||"";
-    school.value=state.info.school||"";
-    ["term","week","records","ads"].forEach(renderThumbs);
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return;
+    try{
+      const d = JSON.parse(raw);
+      if(!d) return;
+      Object.assign(state, d);
+      document.getElementById("teacher").value = state.info.teacher || "";
+      document.getElementById("principal").value = state.info.principal || "";
+      document.getElementById("school").value = state.info.school || "";
+      ["term","week","records","ads"].forEach(renderThumbs);
+    }catch(e){}
+  }
+
+  // ✅ يبني PDF نظيف: غلاف + صور (كل صورة صفحة)
+  function buildPrint(){
+    state.info.teacher = document.getElementById("teacher").value.trim();
+    state.info.principal = document.getElementById("principal").value.trim();
+    state.info.school = document.getElementById("school").value.trim();
+
+    const moeLogo = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/FybNzBQEoqkSKFnG.png";
+    const schLogo = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/AdvEaEhDMUJTLIgK.png";
+    const today = new Date().toLocaleDateString("ar-SA");
+
+    const print = document.getElementById("printArea");
+    print.innerHTML = "";
+
+    // ===== صفحة الغلاف =====
+    const cover = document.createElement("div");
+    cover.className = "p-page";
+    cover.innerHTML = `
+      <div class="p-header">
+        <img src="${moeLogo}" alt="وزارة التعليم">
+        <div class="mid">
+          <h1>الملف الإلكتروني للمعلم</h1>
+          <p>${escapeHtml(state.info.school || "")}</p>
+        </div>
+        <img src="${schLogo}" alt="شعار المدرسة">
+      </div>
+
+      <div class="p-coverBox">
+        <div class="p-coverTop">
+          <div class="big">بيانات الملف</div>
+        </div>
+        <div class="p-coverGrid">
+          <div class="p-cell">
+            <div class="k">اسم المعلم</div>
+            <div class="v">${escapeHtml(state.info.teacher || "—")}</div>
+          </div>
+          <div class="p-cell">
+            <div class="k">اسم مدير المدرسة</div>
+            <div class="v">${escapeHtml(state.info.principal || "—")}</div>
+          </div>
+          <div class="p-cell">
+            <div class="k">اسم المدرسة</div>
+            <div class="v">${escapeHtml(state.info.school || "—")}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-foot">تاريخ الطباعة: ${today}</div>
+    `;
+    print.appendChild(cover);
+
+    const order = [
+      {k:"term", t:"الخطة الفصلية"},
+      {k:"week", t:"الخطة الأسبوعية"},
+      {k:"records", t:"سجلات المتابعة"},
+      {k:"ads", t:"الإعلانات"}
+    ];
+
+    // ===== صور الأقسام: كل صورة = صفحة =====
+    for(const sec of order){
+      const imgs = state.sections[sec.k] || [];
+      for(const src of imgs){
+        const page = document.createElement("div");
+        page.className = "p-page";
+        page.innerHTML = `
+          <div class="p-header">
+            <img src="${moeLogo}" alt="وزارة التعليم">
+            <div class="mid">
+              <h1>الملف الإلكتروني للمعلم</h1>
+              <p>${escapeHtml(state.info.school || "")}</p>
+            </div>
+            <img src="${schLogo}" alt="شعار المدرسة">
+          </div>
+
+          <div class="p-sectionTitle">
+            <h2>${sec.t}</h2>
+            <div class="who">${escapeHtml(state.info.teacher || "")}</div>
+          </div>
+
+          <div class="p-imgBox">
+            <img src="${src}" alt="صورة">
+          </div>
+
+          <div class="p-foot">تاريخ الطباعة: ${today}</div>
+        `;
+        print.appendChild(page);
+      }
+    }
   }
 
   function preparePrint(){
-    state.info.teacher=teacher.value.trim();
-    state.info.principal=principal.value.trim();
-    state.info.school=school.value.trim();
-
-    const moe="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/FybNzBQEoqkSKFnG.png";
-    const sch="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/AdvEaEhDMUJTLIgK.png";
-
-    const print=document.getElementById("printArea");
-    print.innerHTML="";
-
-    const order=[
-      {k:"term",t:"الخطة الفصلية"},
-      {k:"week",t:"الخطة الأسبوعية"},
-      {k:"records",t:"سجلات المتابعة"},
-      {k:"ads",t:"الإعلانات"}
-    ];
-
-    for(const sec of order){
-      const imgs = state.sections[sec.k] || [];
-      for(const img of imgs){
-        const p=document.createElement("div");
-        p.className="p-page";
-        p.innerHTML=`
-          <div class="p-header">
-            <img src="${moe}">
-            <div class="p-title">
-              <h1>الملف الإلكتروني للمعلم</h1>
-              <p>${state.info.school||""}</p>
-            </div>
-            <img src="${sch}">
-          </div>
-
-          <div class="p-section-title">
-            <h2>${sec.t}</h2>
-            <div style="font-size:11px;color:#64748b;font-weight:700">
-              ${state.info.teacher||""}
-            </div>
-          </div>
-
-          <div class="p-image-box">
-            <img src="${img}">
-          </div>
-        `;
-        print.appendChild(p);
-      }
-    }
-
-    setTimeout(()=>window.print(),200);
+    buildPrint();
+    // نؤخر شوي حتى تحمل الصور داخل منطقة الطباعة
+    setTimeout(()=>window.print(), 350);
   }
 
-  document.getElementById("f_term").onchange=e=>handleUpload("term",e.target.files);
-  document.getElementById("f_week").onchange=e=>handleUpload("week",e.target.files);
-  document.getElementById("f_records").onchange=e=>handleUpload("records",e.target.files);
-  document.getElementById("f_ads").onchange=e=>handleUpload("ads",e.target.files);
+  function escapeHtml(str){
+    return String(str||"")
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#039;");
+  }
+
+  // wiring
+  document.getElementById("f_term").addEventListener("change", e=>handleUpload("term", e.target.files));
+  document.getElementById("f_week").addEventListener("change", e=>handleUpload("week", e.target.files));
+  document.getElementById("f_records").addEventListener("change", e=>handleUpload("records", e.target.files));
+  document.getElementById("f_ads").addEventListener("change", e=>handleUpload("ads", e.target.files));
 
   loadData();
 </script>
-
 </body>
 </html>
