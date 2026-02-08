@@ -20,7 +20,7 @@
   *{box-sizing:border-box}
   body{font-family:'Tajawal',sans-serif;background:var(--bg);margin:0;padding:18px}
 
-  /* ====== App Layout (screen) ====== */
+  /* ====== واجهة الموقع ====== */
   .app{
     max-width:1100px;
     margin:auto;
@@ -38,13 +38,33 @@
     border-bottom:3px solid var(--blue);
   }
 
-  .topbar img{height:62px;width:auto;object-fit:contain;background:#fff;border-radius:12px;padding:6px;border:1px solid var(--border)}
+  .topbar img{
+    height:62px;
+    width:auto;
+    object-fit:contain;
+    background:#fff;
+    border-radius:12px;
+    padding:6px;
+    border:1px solid var(--border)
+  }
+
   .title{
     text-align:center;
     flex:1;
   }
-  .title h1{margin:0;font-size:26px;color:var(--blue);font-weight:800}
-  .title p{margin:6px 0 0;color:var(--muted);font-size:13px}
+
+  .title h1{
+    margin:0;
+    font-size:26px;
+    color:var(--blue);
+    font-weight:800
+  }
+
+  .title p{
+    margin:6px 0 0;
+    color:var(--muted);
+    font-size:13px
+  }
 
   .grid{
     display:grid;
@@ -52,7 +72,10 @@
     gap:14px;
     margin-top:16px;
   }
-  @media(min-width:900px){ .grid{grid-template-columns:360px 1fr} }
+
+  @media(min-width:900px){
+    .grid{grid-template-columns:360px 1fr}
+  }
 
   .card{
     border:1px solid var(--border);
@@ -60,9 +83,15 @@
     padding:14px;
     background:#fff;
   }
-  .card h2{margin:0 0 12px;color:var(--blue);font-size:16px}
+
+  .card h2{
+    margin:0 0 12px;
+    color:var(--blue);
+    font-size:16px
+  }
 
   label{font-weight:800;font-size:13px}
+
   input[type="text"]{
     width:100%;
     padding:10px;
@@ -72,15 +101,31 @@
     font-family:'Tajawal';
   }
 
-  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-  button{
-    border:none;border-radius:14px;padding:12px 14px;
-    font-family:'Tajawal';cursor:pointer;font-size:14px
+  .btns{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:8px
   }
+
+  button{
+    border:none;
+    border-radius:14px;
+    padding:12px 14px;
+    font-family:'Tajawal';
+    cursor:pointer;
+    font-size:14px
+  }
+
   .b-save{background:#16a34a;color:#fff}
   .b-clear{background:#dc2626;color:#fff}
   .b-print{background:#1e40af;color:#fff;flex:1}
-  .note{font-size:12px;color:var(--muted);margin-top:8px}
+
+  .note{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:8px
+  }
 
   .section{
     border:1px solid var(--border);
@@ -89,13 +134,27 @@
     background:#fff;
     margin-bottom:14px;
   }
+
   .section-head{
-    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
     border-bottom:2px solid var(--gold);
-    padding-bottom:10px;margin-bottom:12px;
+    padding-bottom:10px;
+    margin-bottom:12px;
   }
-  .section-head h3{margin:0;color:var(--blue);font-size:18px}
-  .section-head span{font-size:12px;color:var(--muted)}
+
+  .section-head h3{
+    margin:0;
+    color:var(--blue);
+    font-size:18px
+  }
+
+  .section-head span{
+    font-size:12px;
+    color:var(--muted)
+  }
 
   .upload{
     border:2px dashed #cbd5e1;
@@ -104,9 +163,22 @@
     background:#f9fafb;
     text-align:center;
   }
+
   .upload input{display:none}
-  .upload label{display:block;cursor:pointer;font-weight:700;color:#334155}
-  .upload small{display:block;margin-top:6px;color:var(--muted);font-weight:400}
+
+  .upload label{
+    display:block;
+    cursor:pointer;
+    font-weight:700;
+    color:#334155
+  }
+
+  .upload small{
+    display:block;
+    margin-top:6px;
+    color:var(--muted);
+    font-weight:400
+  }
 
   .thumbs{
     display:grid;
@@ -114,19 +186,43 @@
     gap:12px;
     margin-top:12px;
   }
+
   .thumb{
     border:1px solid var(--border);
     border-radius:14px;
     padding:8px;
     background:#fff;
   }
-  .thumb img{width:100%;height:140px;object-fit:cover;border-radius:10px}
-  .actions{display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap}
-  .mini{
-    padding:6px 10px;border-radius:12px;font-size:12px;
-    background:#eef2ff;border:1px solid #c7d2fe;color:#1e40af
+
+  .thumb img{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+    border-radius:10px
   }
-  .danger{background:#fee2e2;border-color:#fecaca;color:#b91c1c}
+
+  .actions{
+    display:flex;
+    gap:6px;
+    justify-content:center;
+    margin-top:8px;
+    flex-wrap:wrap
+  }
+
+  .mini{
+    padding:6px 10px;
+    border-radius:12px;
+    font-size:12px;
+    background:#eef2ff;
+    border:1px solid #c7d2fe;
+    color:#1e40af
+  }
+
+  .danger{
+    background:#fee2e2;
+    border-color:#fecaca;
+    color:#b91c1c
+  }
 
   .footer{
     text-align:center;
@@ -135,74 +231,75 @@
     font-size:12px;
   }
 
-  /* ====== PRINT AREA (A4) ====== */
+  /* ====== الطباعة ====== */
   #printArea{display:none}
 
   @media print{
     body{background:#fff;padding:0}
-    .app{display:none !important;}
-    #printArea{display:block !important;}
+    .app{display:none !important}
+    #printArea{display:block !important}
   }
 
-  /* A4 pages */
   .p-page{
     width:210mm;
     min-height:297mm;
-    padding:14mm 14mm 16mm 14mm;
+    padding:14mm;
     margin:0 auto;
     background:#fff;
     position:relative;
     page-break-after:always;
   }
+
   .p-page:last-child{page-break-after:auto}
 
   .p-header{
-    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
     padding-bottom:10mm;
     border-bottom:2px solid var(--blue);
   }
-  .p-header img{height:22mm;width:auto;object-fit:contain}
-  .p-header .p-title{text-align:center;flex:1}
-  .p-header .p-title h1{margin:0;font-size:22px;color:var(--blue);font-weight:800}
-  .p-header .p-title p{margin:6px 0 0;font-size:12px;color:#475569}
 
-  .p-info{
-    margin-top:10mm;
-    border:2px solid var(--blue);
-    border-radius:16px;
-    overflow:hidden;
+  .p-header img{
+    height:22mm;
+    width:auto;
+    object-fit:contain
   }
-  .p-info-top{
-    background:linear-gradient(135deg,var(--blue),var(--blue2));
-    color:#fff;
-    padding:10mm;
+
+  .p-header .p-title{
     text-align:center;
+    flex:1
   }
-  .p-info-top .big{font-size:18px;font-weight:800}
-  .p-info-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:0;
-    background:#fff;
+
+  .p-header .p-title h1{
+    margin:0;
+    font-size:22px;
+    color:var(--blue);
+    font-weight:800
   }
-  .p-info-cell{
-    padding:8mm 6mm;
-    border-top:1px solid #e5e7eb;
-    border-left:1px solid #e5e7eb;
-    text-align:center;
+
+  .p-header .p-title p{
+    margin:6px 0 0;
+    font-size:12px;
+    color:#475569
   }
-  .p-info-cell:last-child{border-left:none}
-  .p-info-cell .k{color:#64748b;font-size:12px;font-weight:700;margin-bottom:4px}
-  .p-info-cell .v{color:#0f172a;font-size:16px;font-weight:800}
 
   .p-section-title{
     margin-top:12mm;
-    display:flex;align-items:flex-end;justify-content:space-between;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
     border-bottom:2px solid var(--gold);
     padding-bottom:4mm;
   }
-  .p-section-title h2{margin:0;color:var(--blue);font-size:18px;font-weight:800}
-  .p-section-title .small{color:#64748b;font-size:11px}
+
+  .p-section-title h2{
+    margin:0;
+    color:var(--blue);
+    font-size:18px;
+    font-weight:800
+  }
 
   .p-image-box{
     margin-top:10mm;
@@ -214,35 +311,27 @@
     border-radius:14px;
     padding:6mm;
   }
+
   .p-image-box img{
     max-width:100%;
     max-height:100%;
     object-fit:contain;
-  }
-
-  .p-footer{
-    position:absolute;
-    bottom:8mm;
-    left:0;right:0;
-    text-align:center;
-    color:#94a3b8;
-    font-size:10px;
   }
 </style>
 </head>
 
 <body>
 
-<!-- ===== SCREEN APP (inputs) ===== -->
+<!-- واجهة الموقع -->
 <div class="app">
 
   <div class="topbar">
-    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/FybNzBQEoqkSKFnG.png" alt="شعار وزارة التعليم">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/FybNzBQEoqkSKFnG.png">
     <div class="title">
       <h1>الملف الإلكتروني للمعلم</h1>
-      <p>ارفع صور الأقسام ثم اطبع واحفظ PDF بشكل رسمي</p>
+      <p>تنظيم ورفع صور الخطط والسجلات ثم حفظها PDF</p>
     </div>
-    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/AdvEaEhDMUJTLIgK.png" alt="شعار المدرسة">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/AdvEaEhDMUJTLIgK.png">
   </div>
 
   <div class="grid">
@@ -250,13 +339,13 @@
       <h2>بيانات الملف</h2>
 
       <label>اسم المعلم</label>
-      <input id="teacher" type="text" placeholder="مثال: مقرن المطيري">
+      <input id="teacher">
 
       <label>اسم مدير المدرسة</label>
-      <input id="principal" type="text" placeholder="مثال: توفيق العقيلي">
+      <input id="principal">
 
       <label>اسم المدرسة</label>
-      <input id="school" type="text" placeholder="مثال: مدرسة الإمام الشوكاني">
+      <input id="school">
 
       <div class="btns">
         <button class="b-save" onclick="saveData()">حفظ البيانات</button>
@@ -264,179 +353,115 @@
         <button class="b-print" onclick="preparePrint()">طباعة / حفظ PDF</button>
       </div>
 
-      <div class="note">ملاحظة: الصور لا تُرفع للإنترنت، تُحفظ على جهازك فقط داخل المتصفح.</div>
+      <div class="note">البيانات محفوظة على جهازك فقط.</div>
     </div>
 
     <div>
+      <!-- الأقسام -->
       <div class="section">
-        <div class="section-head">
-          <h3>الخطة الفصلية</h3>
-          <span>رتّب الصور ⬆️⬇️</span>
-        </div>
-
+        <div class="section-head"><h3>الخطة الفصلية</h3><span>ترتيب ⬆️⬇️</span></div>
         <div class="upload">
-          <label for="f_term">اضغط لرفع صور الخطة الفصلية</label>
-          <small>يمكن رفع أكثر من صورة</small>
+          <label for="f_term">رفع صور الخطة الفصلية</label>
           <input id="f_term" type="file" multiple accept="image/*">
         </div>
-
         <div id="thumbs_term" class="thumbs"></div>
       </div>
 
       <div class="section">
-        <div class="section-head">
-          <h3>الخطة الأسبوعية</h3>
-          <span>رتّب الصور ⬆️⬇️</span>
-        </div>
-
+        <div class="section-head"><h3>الخطة الأسبوعية</h3><span>ترتيب ⬆️⬇️</span></div>
         <div class="upload">
-          <label for="f_week">اضغط لرفع صور الخطة الأسبوعية</label>
-          <small>يمكن رفع أكثر من صورة</small>
+          <label for="f_week">رفع صور الخطة الأسبوعية</label>
           <input id="f_week" type="file" multiple accept="image/*">
         </div>
-
         <div id="thumbs_week" class="thumbs"></div>
       </div>
 
       <div class="section">
-        <div class="section-head">
-          <h3>سجلات المتابعة</h3>
-          <span>رتّب الصور ⬆️⬇️</span>
-        </div>
-
+        <div class="section-head"><h3>سجلات المتابعة</h3><span>ترتيب ⬆️⬇️</span></div>
         <div class="upload">
-          <label for="f_records">اضغط لرفع صور سجلات المتابعة</label>
-          <small>يمكن رفع أكثر من صورة</small>
+          <label for="f_records">رفع صور سجلات المتابعة</label>
           <input id="f_records" type="file" multiple accept="image/*">
         </div>
-
         <div id="thumbs_records" class="thumbs"></div>
       </div>
 
       <div class="section">
-        <div class="section-head">
-          <h3>الإعلانات</h3>
-          <span>رتّب الصور ⬆️⬇️</span>
-        </div>
-
+        <div class="section-head"><h3>الإعلانات</h3><span>ترتيب ⬆️⬇️</span></div>
         <div class="upload">
-          <label for="f_ads">اضغط لرفع صور الإعلانات</label>
-          <small>يمكن رفع أكثر من صورة</small>
+          <label for="f_ads">رفع صور الإعلانات</label>
           <input id="f_ads" type="file" multiple accept="image/*">
         </div>
-
         <div id="thumbs_ads" class="thumbs"></div>
       </div>
 
+      <!-- التوقيع (واجهة فقط) -->
       <div class="footer">برمجة وتنفيذ الأستاذ مقرن المطيري</div>
     </div>
   </div>
 </div>
 
-<!-- ===== PRINT AREA ONLY ===== -->
+<!-- منطقة الطباعة -->
 <div id="printArea"></div>
 
 <script>
-  const STORAGE_KEY = "teacher_e_file_v2";
+  const STORAGE_KEY = "teacher_e_file_final";
 
   const state = {
-    info: { teacher:"", principal:"", school:"" },
-    sections: { term:[], week:[], records:[], ads:[] }
+    info:{teacher:"",principal:"",school:""},
+    sections:{term:[],week:[],records:[],ads:[]}
   };
 
-  // --------- helpers ----------
   function fileToDataURL(file){
     return new Promise(res=>{
-      const r = new FileReader();
-      r.onload = () => res(r.result);
+      const r=new FileReader();
+      r.onload=()=>res(r.result);
       r.readAsDataURL(file);
     });
   }
 
-  async function compressDataURL(dataUrl, maxW=1600, quality=0.84){
-    // ضغط بسيط لتقليل الحجم (يساعد في الحفظ)
-    try{
-      const img = new Image();
-      img.src = dataUrl;
-      await img.decode();
-
-      const ratio = Math.min(1, maxW / img.naturalWidth);
-      const w = Math.round(img.naturalWidth * ratio);
-      const h = Math.round(img.naturalHeight * ratio);
-
-      const c = document.createElement("canvas");
-      c.width = w; c.height = h;
-      const ctx = c.getContext("2d");
-      ctx.drawImage(img, 0, 0, w, h);
-      return c.toDataURL("image/jpeg", quality);
-    }catch(e){
-      return dataUrl;
+  async function handleUpload(key,files){
+    for(const f of [...files]){
+      const src = await fileToDataURL(f);
+      state.sections[key].push(src);
     }
+    renderThumbs(key);
   }
 
-  function esc(s){
-    return String(s||"")
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
-  }
-
-  // --------- UI render thumbnails ----------
   function renderThumbs(key){
-    const box = document.getElementById("thumbs_"+key);
-    box.innerHTML = "";
-    state.sections[key].forEach((src, idx)=>{
-      const el = document.createElement("div");
-      el.className = "thumb";
-      el.innerHTML = `
-        <img src="${src}" alt="صورة">
-        <div class="actions">
-          <button class="mini" onclick="moveImg('${key}',${idx},-1)">⬆️</button>
-          <button class="mini" onclick="moveImg('${key}',${idx}, 1)">⬇️</button>
-          <button class="mini danger" onclick="delImg('${key}',${idx})">حذف</button>
-        </div>
-      `;
-      box.appendChild(el);
+    const box=document.getElementById("thumbs_"+key);
+    box.innerHTML="";
+    state.sections[key].forEach((src,i)=>{
+      box.innerHTML+=`
+        <div class="thumb">
+          <img src="${src}">
+          <div class="actions">
+            <button class="mini" onclick="moveImg('${key}',${i},-1)">⬆️</button>
+            <button class="mini" onclick="moveImg('${key}',${i},1)">⬇️</button>
+            <button class="mini danger" onclick="delImg('${key}',${i})">حذف</button>
+          </div>
+        </div>`;
     });
   }
 
-  function moveImg(key, idx, dir){
-    const arr = state.sections[key];
-    const ni = idx + dir;
-    if(ni < 0 || ni >= arr.length) return;
-    const [x] = arr.splice(idx, 1);
-    arr.splice(ni, 0, x);
+  function moveImg(key,i,d){
+    const a=state.sections[key];
+    const n=i+d;
+    if(n<0||n>=a.length)return;
+    [a[i],a[n]]=[a[n],a[i]];
     renderThumbs(key);
   }
 
-  function delImg(key, idx){
-    state.sections[key].splice(idx,1);
+  function delImg(key,i){
+    state.sections[key].splice(i,1);
     renderThumbs(key);
   }
 
-  async function handleUpload(key, fileList){
-    const files = Array.from(fileList || []);
-    for(const f of files){
-      const raw = await fileToDataURL(f);
-      const small = await compressDataURL(raw);
-      state.sections[key].push(small);
-    }
-    renderThumbs(key);
-  }
-
-  // --------- save / clear ----------
   function saveData(){
-    state.info.teacher = document.getElementById("teacher").value.trim();
-    state.info.principal = document.getElementById("principal").value.trim();
-    state.info.school = document.getElementById("school").value.trim();
-    try{
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      alert("تم حفظ البيانات بنجاح");
-    }catch(e){
-      alert("لم يتم الحفظ: الصور كثيرة/كبيرة. قلّل الصور أو ارفعها عند الحاجة.");
-    }
+    state.info.teacher=teacher.value;
+    state.info.principal=principal.value;
+    state.info.school=school.value;
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+    alert("تم الحفظ");
   }
 
   function clearData(){
@@ -447,155 +472,69 @@
   }
 
   function loadData(){
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if(!raw) return;
-    try{
-      const data = JSON.parse(raw);
-      if(!data) return;
-      if(data.info) state.info = {...state.info, ...data.info};
-      if(data.sections) state.sections = {...state.sections, ...data.sections};
-
-      document.getElementById("teacher").value = state.info.teacher || "";
-      document.getElementById("principal").value = state.info.principal || "";
-      document.getElementById("school").value = state.info.school || "";
-
-      ["term","week","records","ads"].forEach(renderThumbs);
-    }catch(e){}
-  }
-
-  // --------- print builder ----------
-  function buildPrintPages(){
-    // تحديث المعلومات قبل الطباعة
-    state.info.teacher = document.getElementById("teacher").value.trim();
-    state.info.principal = document.getElementById("principal").value.trim();
-    state.info.school = document.getElementById("school").value.trim();
-
-    const moeLogo = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/FybNzBQEoqkSKFnG.png";
-    const schLogo = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/AdvEaEhDMUJTLIgK.png";
-
-    const today = new Date().toLocaleDateString("ar-SA");
-    const print = document.getElementById("printArea");
-    print.innerHTML = "";
-
-    // Page 1: Cover
-    const cover = document.createElement("div");
-    cover.className = "p-page";
-    cover.innerHTML = `
-      <div class="p-header">
-        <img src="${moeLogo}" alt="وزارة التعليم">
-        <div class="p-title">
-          <h1>الملف الإلكتروني للمعلم</h1>
-          <p>${esc(state.info.school || "")}</p>
-        </div>
-        <img src="${schLogo}" alt="شعار المدرسة">
-      </div>
-
-      <div class="p-info">
-        <div class="p-info-top">
-          <div class="big">بيانات الملف</div>
-        </div>
-        <div class="p-info-grid">
-          <div class="p-info-cell">
-            <div class="k">اسم المعلم</div>
-            <div class="v">${esc(state.info.teacher || "—")}</div>
-          </div>
-          <div class="p-info-cell">
-            <div class="k">اسم مدير المدرسة</div>
-            <div class="v">${esc(state.info.principal || "—")}</div>
-          </div>
-          <div class="p-info-cell">
-            <div class="k">اسم المدرسة</div>
-            <div class="v">${esc(state.info.school || "—")}</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="p-footer">تاريخ الطباعة: ${today}</div>
-    `;
-    print.appendChild(cover);
-
-    const order = [
-      {key:"term", title:"الخطة الفصلية"},
-      {key:"week", title:"الخطة الأسبوعية"},
-      {key:"records", title:"سجلات المتابعة"},
-      {key:"ads", title:"الإعلانات"}
-    ];
-
-    // Each image = one A4 page (very clean)
-    for(const sec of order){
-      const imgs = state.sections[sec.key] || [];
-
-      // إذا ما فيه صور، نضع صفحة فارغة عنوان فقط (اختياري) — هنا نخليها صفحة واحدة بسيطة
-      if(imgs.length === 0){
-        const p = document.createElement("div");
-        p.className = "p-page";
-        p.innerHTML = `
-          <div class="p-header">
-            <img src="${moeLogo}" alt="وزارة التعليم">
-            <div class="p-title">
-              <h1>الملف الإلكتروني للمعلم</h1>
-              <p>${esc(state.info.school || "")}</p>
-            </div>
-            <img src="${schLogo}" alt="شعار المدرسة">
-          </div>
-
-          <div class="p-section-title">
-            <h2>${sec.title}</h2>
-            <div class="small">${esc(state.info.teacher || "")}</div>
-          </div>
-
-          <div class="p-image-box">
-            <div style="color:#94a3b8;font-size:14px;font-weight:700">لا توجد صور مضافة لهذا القسم</div>
-          </div>
-
-          <div class="p-footer">برمجة وتنفيذ الأستاذ مقرن المطيري — ${today}</div>
-        `;
-        print.appendChild(p);
-        continue;
-      }
-
-      imgs.forEach((src)=>{
-        const p = document.createElement("div");
-        p.className = "p-page";
-        p.innerHTML = `
-          <div class="p-header">
-            <img src="${moeLogo}" alt="وزارة التعليم">
-            <div class="p-title">
-              <h1>الملف الإلكتروني للمعلم</h1>
-              <p>${esc(state.info.school || "")}</p>
-            </div>
-            <img src="${schLogo}" alt="شعار المدرسة">
-          </div>
-
-          <div class="p-section-title">
-            <h2>${sec.title}</h2>
-            <div class="small">${esc(state.info.teacher || "")}</div>
-          </div>
-
-          <div class="p-image-box">
-            <img src="${src}" alt="صورة">
-          </div>
-
-          <div class="p-footer">برمجة وتنفيذ الأستاذ مقرن المطيري — ${today}</div>
-        `;
-        print.appendChild(p);
-      });
-    }
+    const raw=localStorage.getItem(STORAGE_KEY);
+    if(!raw)return;
+    const d=JSON.parse(raw);
+    Object.assign(state,d);
+    teacher.value=state.info.teacher;
+    principal.value=state.info.principal;
+    school.value=state.info.school;
+    ["term","week","records","ads"].forEach(renderThumbs);
   }
 
   function preparePrint(){
-    buildPrintPages();
-    // تأخير بسيط حتى تحمل الصور في منطقة الطباعة
-    setTimeout(()=>window.print(), 250);
+    state.info.teacher=teacher.value;
+    state.info.principal=principal.value;
+    state.info.school=school.value;
+
+    const moe="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/FybNzBQEoqkSKFnG.png";
+    const sch="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/AdvEaEhDMUJTLIgK.png";
+
+    const print=document.getElementById("printArea");
+    print.innerHTML="";
+
+    const order=[
+      {k:"term",t:"الخطة الفصلية"},
+      {k:"week",t:"الخطة الأسبوعية"},
+      {k:"records",t:"سجلات المتابعة"},
+      {k:"ads",t:"الإعلانات"}
+    ];
+
+    for(const sec of order){
+      for(const img of state.sections[sec.k]){
+        const p=document.createElement("div");
+        p.className="p-page";
+        p.innerHTML=`
+          <div class="p-header">
+            <img src="${moe}">
+            <div class="p-title">
+              <h1>الملف الإلكتروني للمعلم</h1>
+              <p>${state.info.school||""}</p>
+            </div>
+            <img src="${sch}">
+          </div>
+
+          <div class="p-section-title">
+            <h2>${sec.t}</h2>
+            <div></div>
+          </div>
+
+          <div class="p-image-box">
+            <img src="${img}">
+          </div>
+        `;
+        print.appendChild(p);
+      }
+    }
+
+    setTimeout(()=>window.print(),200);
   }
 
-  // --------- wiring ----------
-  document.getElementById("f_term").addEventListener("change", e=>handleUpload("term", e.target.files));
-  document.getElementById("f_week").addEventListener("change", e=>handleUpload("week", e.target.files));
-  document.getElementById("f_records").addEventListener("change", e=>handleUpload("records", e.target.files));
-  document.getElementById("f_ads").addEventListener("change", e=>handleUpload("ads", e.target.files));
+  document.getElementById("f_term").onchange=e=>handleUpload("term",e.target.files);
+  document.getElementById("f_week").onchange=e=>handleUpload("week",e.target.files);
+  document.getElementById("f_records").onchange=e=>handleUpload("records",e.target.files);
+  document.getElementById("f_ads").onchange=e=>handleUpload("ads",e.target.files);
 
-  // init
   loadData();
 </script>
 
