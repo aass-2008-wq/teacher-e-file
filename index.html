@@ -1,132 +1,202 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>الملف الإلكتروني للمعلم</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
 
 <style>
   :root{
     --blue:#1e3a8a;
+    --blue2:#1e40af;
     --gold:#d4af37;
     --bg:#f3f4f6;
-    --card:#ffffff;
-    --muted:#6b7280;
     --border:#e5e7eb;
   }
 
-  *{box-sizing:border-box}
-  body{font-family:'Tajawal',sans-serif;background:var(--bg);margin:0;padding:20px}
-  .container{max-width:980px;margin:auto;background:var(--card);padding:18px;border-radius:16px}
-
-  header{
-    display:flex;align-items:center;justify-content:space-between;gap:10px;
-    border-bottom:4px solid var(--blue);padding-bottom:12px;margin-bottom:16px
+  body{
+    font-family:'Tajawal',sans-serif;
+    background:var(--bg);
+    margin:0;
+    padding:20px;
   }
-  header .title{flex:1;text-align:center}
-  header h1{margin:0;color:var(--blue);font-size:22px}
-  header p{margin:6px 0 0;color:rgba(255,255,255,0);display:none} /* reserved */
-  header img{height:58px;width:auto;object-fit:contain;display:none}
 
-  .grid{display:grid;grid-template-columns:1fr;gap:14px}
-  @media(min-width:860px){ .grid{grid-template-columns:1fr 1fr} }
+  .container{
+    max-width:1000px;
+    margin:auto;
+    background:#fff;
+    padding:24px;
+    border-radius:20px;
+  }
 
-  .card{
+  /* ===== Header ===== */
+  header{
+    display:grid;
+    grid-template-columns:120px 1fr 120px;
+    align-items:center;
+    gap:10px;
+    border-bottom:5px solid var(--blue);
+    padding-bottom:16px;
+    margin-bottom:24px;
+  }
+
+  header img{
+    max-height:70px;
+    width:auto;
+    object-fit:contain;
+  }
+
+  header h1{
+    text-align:center;
+    margin:0;
+    font-size:30px;
+    color:var(--blue);
+    font-weight:800;
+  }
+
+  /* ===== Info Box ===== */
+  .info-box{
+    margin-top:18px;
+    background:linear-gradient(135deg,var(--blue),var(--blue2));
+    color:#fff;
+    border-radius:18px;
+    padding:20px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:16px;
+    text-align:center;
+  }
+
+  .info-item span{
+    display:block;
+    font-size:14px;
+    color:#fde68a;
+    margin-bottom:6px;
+  }
+
+  .info-item strong{
+    font-size:22px;
+    font-weight:800;
+  }
+
+  /* ===== Inputs ===== */
+  .no-print label{font-weight:700}
+  .no-print input{
+    width:100%;
+    padding:10px;
+    margin:6px 0 14px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-family:'Tajawal';
+  }
+
+  /* ===== Pages ===== */
+  .page{
+    margin-top:36px;
+    page-break-after:always;
+  }
+  .page:last-child{page-break-after:auto}
+
+  .page h2{
+    color:var(--blue);
+    border-bottom:3px solid var(--gold);
+    padding-bottom:8px;
+    margin-bottom:16px;
+    font-size:22px;
+  }
+
+  .upload-box{
+    border:2px dashed #cbd5e1;
+    border-radius:16px;
+    padding:18px;
+    text-align:center;
+    background:#f9fafb;
+    cursor:pointer;
+  }
+
+  .upload-box input{display:none}
+
+  .thumbs{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    gap:14px;
+    margin-top:18px;
+  }
+
+  .thumb{
     border:1px solid var(--border);
     border-radius:14px;
-    padding:14px;
+    padding:8px;
     background:#fff;
   }
-  .card h2{margin:0 0 10px;color:var(--blue);font-size:16px}
-  label{font-weight:700;font-size:13px}
-  input[type="text"], input[type="file"]{
-    width:100%;padding:10px;margin:6px 0 12px;border:1px solid #cfcfcf;border-radius:10px;font-family:'Tajawal'
+
+  .thumb img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:10px;
   }
 
-  .hint{font-size:12px;color:var(--muted);margin-top:-8px;margin-bottom:10px}
+  .thumb-actions{
+    display:flex;
+    gap:6px;
+    justify-content:center;
+    margin-top:8px;
+  }
 
-  .buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+  .mini{
+    padding:6px 12px;
+    font-size:12px;
+    border-radius:10px;
+    border:1px solid #c7d2fe;
+    background:#eef2ff;
+    color:#1e40af;
+  }
+
+  .danger{
+    background:#fee2e2;
+    color:#b91c1c;
+    border-color:#fecaca;
+  }
+
+  /* ===== Buttons ===== */
+  .buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:30px;
+  }
+
   button{
-    padding:12px 14px;border:none;border-radius:12px;font-size:14px;cursor:pointer;font-family:'Tajawal'
+    flex:1;
+    padding:14px;
+    border:none;
+    border-radius:16px;
+    font-size:15px;
+    font-family:'Tajawal';
+    cursor:pointer;
   }
+
   .save{background:#16a34a;color:#fff}
   .clear{background:#dc2626;color:#fff}
   .print{background:#1e40af;color:#fff}
 
-  .page{
-    margin-top:26px;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:14px;
-    background:#fff;
-  }
-  .page-title{
-    display:flex;align-items:center;justify-content:space-between;gap:10px;
-    border-bottom:2px solid var(--gold);
-    padding-bottom:8px;margin-bottom:12px
-  }
-  .page-title h3{margin:0;color:var(--blue);font-size:16px}
-  .page-title span{font-size:12px;color:var(--muted)}
-
-  .upload-box{
-    border:2px dashed #cfd4dc;border-radius:12px;padding:14px;text-align:center;background:#fafafa
-  }
-  .upload-box label{display:block;cursor:pointer}
-  .upload-box input{display:none}
-
-  .thumbs{
-    display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px
-  }
-  @media(min-width:520px){ .thumbs{grid-template-columns:repeat(3,1fr)} }
-  @media(min-width:860px){ .thumbs{grid-template-columns:repeat(4,1fr)} }
-
-  .thumb{
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:6px;
-    background:#fff;
-  }
-  .thumb img{
-    width:100%;height:110px;object-fit:cover;border-radius:10px;display:block
+  footer{
+    text-align:center;
+    margin-top:34px;
+    font-size:13px;
+    color:#555;
   }
 
-  .thumb-actions{
-    display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap
-  }
-  .mini{
-    font-size:12px;padding:6px 10px;border-radius:10px;
-    background:#eef2ff;color:#1e40af;border:1px solid #c7d2fe
-  }
-  .mini.danger{
-    background:#fee2e2;color:#b91c1c;border:1px solid #fecaca
-  }
-
-  /* Area printed content */
-  .print-area{margin-top:18px}
-
-  /* Print: hide controls, split pages A4 */
+  /* ===== Print ===== */
   @media print{
     body{background:#fff;padding:0}
-    .container{max-width:none;margin:0;border-radius:0;padding:0}
-    .no-print{display:none !important}
-    header{border-bottom:3px solid var(--blue);margin:0 0 10mm 0;padding:8mm 10mm}
-    header img{display:block}
-    .print-area{padding:0 10mm 10mm 10mm}
-    .page{
-      border:none;border-radius:0;padding:0;margin:0;
-      page-break-after:always;
-    }
-    .page:last-child{page-break-after:auto}
-    .page-title{border-bottom:1.5px solid var(--gold);margin:0 0 6mm 0;padding-bottom:3mm}
-    .thumbs{display:block;margin:0}
-    .thumb{border:none;border-radius:0;padding:0;margin:0 0 6mm 0}
-    .thumb img{height:auto;max-height:250mm;object-fit:contain}
-  }
-
-  footer{
-    text-align:center;margin-top:18px;font-size:12px;color:#555
+    .no-print, .buttons{display:none}
+    .container{padding:0}
+    header{margin-bottom:12mm}
+    .page{margin:0}
   }
 </style>
 </head>
@@ -134,159 +204,83 @@
 <body>
 <div class="container">
 
-  <!-- Header (logos optional) -->
+  <!-- Header with fixed logos -->
   <header>
-    <img id="logoMinPreview" alt="شعار وزارة التعليم">
-    <div class="title">
-      <h1>الملف الإلكتروني للمعلم</h1>
-      <div style="font-size:12px;color:#374151;margin-top:6px" class="no-print">
-        (الخيار A) استخدم زر الطباعة ثم اختر "حفظ كـ PDF"
-      </div>
-    </div>
-    <img id="logoSchPreview" alt="شعار المدرسة">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/FybNzBQEoqkSKFnG.png" alt="شعار وزارة التعليم">
+    <h1>الملف الإلكتروني للمعلم</h1>
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/AdvEaEhDMUJTLIgK.png" alt="شعار المدرسة">
   </header>
 
-  <!-- Top controls -->
-  <div class="grid no-print">
-
-    <div class="card">
-      <h2>بيانات المعلم</h2>
-
-      <label>اسم المعلم</label>
-      <input id="teacherName" type="text" placeholder="مثال: أحمد محمد">
-
-      <label>اسم مدير المدرسة</label>
-      <input id="principalName" type="text" placeholder="مثال: خالد عبدالله">
-
-      <label>اسم المدرسة</label>
-      <input id="schoolName" type="text" placeholder="مثال: مدرسة الإمام الشوكاني">
-
-      <label>المادة</label>
-      <input id="subjectName" type="text" placeholder="مثال: لغتي">
-
-      <label>الصف</label>
-      <input id="gradeName" type="text" placeholder="مثال: السادس">
-
-      <div class="hint">✅ سيتم ظهور البيانات في أعلى صفحات الطباعة تلقائيًا.</div>
+  <!-- Big info -->
+  <div class="info-box">
+    <div class="info-item">
+      <span>اسم المعلم</span>
+      <strong id="pTeacher">—</strong>
     </div>
-
-    <div class="card">
-      <h2>الشعارات (اختياري)</h2>
-
-      <label>شعار وزارة التعليم</label>
-      <input id="logoMinFile" type="file" accept="image/*">
-      <div class="hint">اختياري — الأفضل PNG شفاف.</div>
-
-      <label>شعار المدرسة</label>
-      <input id="logoSchFile" type="file" accept="image/*">
-      <div class="hint">اختياري — سيظهر أعلى الصفحة عند الطباعة.</div>
-
-      <div class="hint" style="margin-top:6px">
-        ملاحظة: حفظ الصور داخل "حفظ البيانات" يعتمد على سعة جهازك. إذا كانت صورك كثيرة/كبيرة قد لا تُحفظ كلها.
-      </div>
+    <div class="info-item">
+      <span>اسم مدير المدرسة</span>
+      <strong id="pPrincipal">—</strong>
     </div>
-
+    <div class="info-item">
+      <span>اسم المدرسة</span>
+      <strong id="pSchool">—</strong>
+    </div>
   </div>
 
-  <!-- Print area -->
-  <div class="print-area">
+  <!-- Inputs -->
+  <div class="no-print">
+    <label>اسم المعلم</label>
+    <input id="teacher">
 
-    <!-- Cover Info (prints as first block) -->
-    <div class="page" id="coverPage">
-      <div class="page-title">
-        <h3>بيانات الملف</h3>
-        <span id="printDate"></span>
-      </div>
+    <label>اسم مدير المدرسة</label>
+    <input id="principal">
 
-      <div style="border:1px solid #e5e7eb;border-radius:14px;padding:12px;background:#f8fafc;line-height:2">
-        <div><b>اسم المعلم:</b> <span id="pTeacher">—</span></div>
-        <div><b>اسم مدير المدرسة:</b> <span id="pPrincipal">—</span></div>
-        <div><b>المدرسة:</b> <span id="pSchool">—</span></div>
-        <div><b>المادة:</b> <span id="pSubject">—</span></div>
-        <div><b>الصف:</b> <span id="pGrade">—</span></div>
-      </div>
+    <label>اسم المدرسة</label>
+    <input id="school">
+  </div>
 
-      <div style="margin-top:10px;color:#6b7280;font-size:12px">
-        يتم حفظ الملف بصيغة PDF عبر: طباعة → حفظ كـ PDF
-      </div>
-    </div>
+  <!-- Sections -->
+  <div class="page">
+    <h2>الخطة الفصلية</h2>
+    <label class="upload-box">
+      اضغط لرفع صور الخطة الفصلية
+      <input type="file" multiple accept="image/*" onchange="upload('term',this.files)">
+    </label>
+    <div id="thumbs_term" class="thumbs"></div>
+  </div>
 
-    <!-- Sections -->
-    <div class="page" data-section="plan_term">
-      <div class="page-title">
-        <h3>الخطة الفصلية</h3>
-        <span class="no-print">ارفع الصور ثم رتّبها ⬆️⬇️</span>
-      </div>
+  <div class="page">
+    <h2>الخطة الأسبوعية</h2>
+    <label class="upload-box">
+      اضغط لرفع صور الخطة الأسبوعية
+      <input type="file" multiple accept="image/*" onchange="upload('week',this.files)">
+    </label>
+    <div id="thumbs_week" class="thumbs"></div>
+  </div>
 
-      <div class="no-print upload-box">
-        <label for="file_plan_term">
-          اضغط لرفع صور الخطة الفصلية
-          <div class="hint" style="margin:8px 0 0">يمكن رفع أكثر من صورة</div>
-        </label>
-        <input id="file_plan_term" type="file" accept="image/*" multiple>
-      </div>
+  <div class="page">
+    <h2>سجلات المتابعة</h2>
+    <label class="upload-box">
+      اضغط لرفع صور سجلات المتابعة
+      <input type="file" multiple accept="image/*" onchange="upload('records',this.files)">
+    </label>
+    <div id="thumbs_records" class="thumbs"></div>
+  </div>
 
-      <div id="thumbs_plan_term" class="thumbs"></div>
-    </div>
-
-    <div class="page" data-section="plan_week">
-      <div class="page-title">
-        <h3>الخطة الأسبوعية</h3>
-        <span class="no-print">ارفع الصور ثم رتّبها ⬆️⬇️</span>
-      </div>
-
-      <div class="no-print upload-box">
-        <label for="file_plan_week">
-          اضغط لرفع صور الخطة الأسبوعية
-          <div class="hint" style="margin:8px 0 0">يمكن رفع أكثر من صورة</div>
-        </label>
-        <input id="file_plan_week" type="file" accept="image/*" multiple>
-      </div>
-
-      <div id="thumbs_plan_week" class="thumbs"></div>
-    </div>
-
-    <div class="page" data-section="records">
-      <div class="page-title">
-        <h3>سجلات المتابعة</h3>
-        <span class="no-print">ارفع الصور ثم رتّبها ⬆️⬇️</span>
-      </div>
-
-      <div class="no-print upload-box">
-        <label for="file_records">
-          اضغط لرفع صور سجلات المتابعة
-          <div class="hint" style="margin:8px 0 0">يمكن رفع أكثر من صورة</div>
-        </label>
-        <input id="file_records" type="file" accept="image/*" multiple>
-      </div>
-
-      <div id="thumbs_records" class="thumbs"></div>
-    </div>
-
-    <div class="page" data-section="ads">
-      <div class="page-title">
-        <h3>الإعلانات</h3>
-        <span class="no-print">ارفع الصور ثم رتّبها ⬆️⬇️</span>
-      </div>
-
-      <div class="no-print upload-box">
-        <label for="file_ads">
-          اضغط لرفع صور الإعلانات
-          <div class="hint" style="margin:8px 0 0">يمكن رفع أكثر من صورة</div>
-        </label>
-        <input id="file_ads" type="file" accept="image/*" multiple>
-      </div>
-
-      <div id="thumbs_ads" class="thumbs"></div>
-    </div>
-
+  <div class="page">
+    <h2>الإعلانات</h2>
+    <label class="upload-box">
+      اضغط لرفع صور الإعلانات
+      <input type="file" multiple accept="image/*" onchange="upload('ads',this.files)">
+    </label>
+    <div id="thumbs_ads" class="thumbs"></div>
   </div>
 
   <!-- Buttons -->
   <div class="buttons no-print">
-    <button class="save" onclick="saveAll()">حفظ البيانات</button>
-    <button class="clear" onclick="clearAll()">مسح البيانات</button>
-    <button class="print" onclick="prepareAndPrint()">طباعة / حفظ PDF</button>
+    <button class="save" onclick="saveData()">حفظ البيانات</button>
+    <button class="clear" onclick="clearData()">مسح البيانات</button>
+    <button class="print" onclick="window.print()">طباعة / حفظ PDF</button>
   </div>
 
   <footer>
@@ -296,253 +290,89 @@
 </div>
 
 <script>
-  // ---------- State ----------
-  const state = {
-    info: {
-      teacherName: "",
-      principalName: "",
-      schoolName: "",
-      subjectName: "",
-      gradeName: ""
-    },
-    logos: {
-      min: null,  // dataURL
-      sch: null   // dataURL
-    },
-    sections: {
-      plan_term: [],
-      plan_week: [],
-      records: [],
-      ads: []
+const data={
+  teacher:'',
+  principal:'',
+  school:'',
+  images:{term:[],week:[],records:[],ads:[]}
+};
+
+function upload(type,files){
+  [...files].forEach(f=>{
+    const r=new FileReader();
+    r.onload=e=>{
+      data.images[type].push(e.target.result);
+      render(type);
     }
-  };
+    r.readAsDataURL(f);
+  });
+}
 
-  const STORAGE_KEY = "teacher_file_v1";
-
-  // ---------- Helpers ----------
-  function $(id){ return document.getElementById(id); }
-
-  function fileToDataURL(file){
-    return new Promise((resolve)=>{
-      const r = new FileReader();
-      r.onload = () => resolve(r.result);
-      r.readAsDataURL(file);
-    });
-  }
-
-  // ضغط بسيط للصورة قبل التخزين (لتقليل حجم LocalStorage)
-  async function compressDataURL(dataUrl, maxW=1400, quality=0.82){
-    try{
-      const img = new Image();
-      img.src = dataUrl;
-      await img.decode();
-
-      const ratio = Math.min(1, maxW / img.naturalWidth);
-      const w = Math.round(img.naturalWidth * ratio);
-      const h = Math.round(img.naturalHeight * ratio);
-
-      const canvas = document.createElement("canvas");
-      canvas.width = w; canvas.height = h;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0, w, h);
-
-      // JPEG أخف، لكن لو PNG شفافة للشعار لا نضغطها هنا (نستخدم للشعارات 그대로)
-      return canvas.toDataURL("image/jpeg", quality);
-    } catch(e){
-      return dataUrl; // لو فشل، نخليها كما هي
-    }
-  }
-
-  function escapeHtml(str){
-    return String(str||"")
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
-  }
-
-  // ---------- Render ----------
-  function renderThumbs(sectionId){
-    const wrap = $("thumbs_" + sectionId);
-    wrap.innerHTML = "";
-
-    const arr = state.sections[sectionId] || [];
-    arr.forEach((src, idx)=>{
-      const card = document.createElement("div");
-      card.className = "thumb";
-
-      card.innerHTML = `
-        <img src="${src}" alt="صورة">
+function render(type){
+  const box=document.getElementById('thumbs_'+type);
+  box.innerHTML='';
+  data.images[type].forEach((src,i)=>{
+    box.innerHTML+=`
+      <div class="thumb">
+        <img src="${src}">
         <div class="thumb-actions no-print">
-          <button class="mini" onclick="moveImg('${sectionId}', ${idx}, -1)">⬆️</button>
-          <button class="mini" onclick="moveImg('${sectionId}', ${idx}, 1)">⬇️</button>
-          <button class="mini danger" onclick="delImg('${sectionId}', ${idx})">حذف</button>
+          <button class="mini" onclick="move('${type}',${i},-1)">⬆️</button>
+          <button class="mini" onclick="move('${type}',${i},1)">⬇️</button>
+          <button class="mini danger" onclick="del('${type}',${i})">حذف</button>
         </div>
-      `;
-      wrap.appendChild(card);
-    });
+      </div>`;
+  });
+}
+
+function move(type,i,d){
+  const a=data.images[type];
+  const n=i+d;
+  if(n<0||n>=a.length)return;
+  [a[i],a[n]]=[a[n],a[i]];
+  render(type);
+}
+
+function del(type,i){
+  data.images[type].splice(i,1);
+  render(type);
+}
+
+function saveData(){
+  data.teacher=teacher.value;
+  data.principal=principal.value;
+  data.school=school.value;
+  localStorage.setItem('teacherFile',JSON.stringify(data));
+  alert('تم حفظ البيانات');
+}
+
+function clearData(){
+  if(confirm('مسح جميع البيانات؟')){
+    localStorage.removeItem('teacherFile');
+    location.reload();
   }
+}
 
-  function renderAll(){
-    // date
-    $("printDate").textContent = new Date().toLocaleDateString("ar-SA");
+(function load(){
+  const d=JSON.parse(localStorage.getItem('teacherFile'));
+  if(!d)return;
+  Object.assign(data,d);
+  teacher.value=data.teacher;
+  principal.value=data.principal;
+  school.value=data.school;
+  ['term','week','records','ads'].forEach(render);
+  updateHeader();
+})();
 
-    // print info
-    $("pTeacher").textContent = state.info.teacherName || "—";
-    $("pPrincipal").textContent = state.info.principalName || "—";
-    $("pSchool").textContent = state.info.schoolName || "—";
-    $("pSubject").textContent = state.info.subjectName || "—";
-    $("pGrade").textContent = state.info.gradeName || "—";
+function updateHeader(){
+  pTeacher.textContent=teacher.value||'—';
+  pPrincipal.textContent=principal.value||'—';
+  pSchool.textContent=school.value||'—';
+}
 
-    // logos
-    const minImg = $("logoMinPreview");
-    const schImg = $("logoSchPreview");
-
-    if(state.logos.min){
-      minImg.src = state.logos.min;
-      minImg.style.display = "block";
-    } else {
-      minImg.style.display = "none";
-    }
-
-    if(state.logos.sch){
-      schImg.src = state.logos.sch;
-      schImg.style.display = "block";
-    } else {
-      schImg.style.display = "none";
-    }
-
-    // sections
-    renderThumbs("plan_term");
-    renderThumbs("plan_week");
-    renderThumbs("records");
-    renderThumbs("ads");
-  }
-
-  // ---------- Actions: reorder/delete ----------
-  function moveImg(sectionId, idx, dir){
-    const arr = state.sections[sectionId];
-    const ni = idx + dir;
-    if(ni < 0 || ni >= arr.length) return;
-    const [x] = arr.splice(idx, 1);
-    arr.splice(ni, 0, x);
-    renderThumbs(sectionId);
-  }
-
-  function delImg(sectionId, idx){
-    state.sections[sectionId].splice(idx, 1);
-    renderThumbs(sectionId);
-  }
-
-  // ---------- Save/Clear ----------
-  function saveAll(){
-    // update info from inputs
-    state.info.teacherName = $("teacherName").value.trim();
-    state.info.principalName = $("principalName").value.trim();
-    state.info.schoolName = $("schoolName").value.trim();
-    state.info.subjectName = $("subjectName").value.trim();
-    state.info.gradeName = $("gradeName").value.trim();
-
-    try{
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      alert("تم حفظ البيانات");
-    } catch(e){
-      alert("لم يتم الحفظ: الصور كثيرة/كبيرة على التخزين. قلّل الصور أو ارفعها مرة أخرى عند الحاجة.");
-    }
-  }
-
-  function clearAll(){
-    if(confirm("هل تريد مسح جميع البيانات؟")){
-      localStorage.removeItem(STORAGE_KEY);
-      location.reload();
-    }
-  }
-
-  function loadAll(){
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if(!raw) return;
-    try{
-      const data = JSON.parse(raw);
-      if(!data) return;
-
-      // merge safe
-      if(data.info) state.info = {...state.info, ...data.info};
-      if(data.logos) state.logos = {...state.logos, ...data.logos};
-      if(data.sections) state.sections = {...state.sections, ...data.sections};
-
-      // fill inputs
-      $("teacherName").value = state.info.teacherName || "";
-      $("principalName").value = state.info.principalName || "";
-      $("schoolName").value = state.info.schoolName || "";
-      $("subjectName").value = state.info.subjectName || "";
-      $("gradeName").value = state.info.gradeName || "";
-
-    } catch(e){}
-  }
-
-  // ---------- Print ----------
-  function prepareAndPrint(){
-    // قبل الطباعة: حدّث بيانات الطباعة
-    state.info.teacherName = $("teacherName").value.trim();
-    state.info.principalName = $("principalName").value.trim();
-    state.info.schoolName = $("schoolName").value.trim();
-    state.info.subjectName = $("subjectName").value.trim();
-    state.info.gradeName = $("gradeName").value.trim();
-
-    renderAll();
-
-    // افتح الطباعة
-    window.print();
-  }
-
-  // ---------- Wiring uploads ----------
-  async function handleSectionUpload(sectionId, files){
-    const list = Array.from(files || []);
-    for(const f of list){
-      const raw = await fileToDataURL(f);
-      const compressed = await compressDataURL(raw); // يقلل الحجم ويحسن الحفظ
-      state.sections[sectionId].push(compressed);
-    }
-    renderThumbs(sectionId);
-  }
-
-  async function handleLogoUpload(which, file){
-    if(!file) return;
-    // الشعار نخليه PNG/JPG كما هو (لا نضغطه)
-    const d = await fileToDataURL(file);
-    state.logos[which] = d;
-    renderAll();
-  }
-
-  // ---------- Init ----------
-  (function init(){
-    loadAll();
-
-    // wiring inputs to live update print preview
-    ["teacherName","principalName","schoolName","subjectName","gradeName"].forEach(id=>{
-      $(id).addEventListener("input", ()=>{
-        state.info.teacherName = $("teacherName").value.trim();
-        state.info.principalName = $("principalName").value.trim();
-        state.info.schoolName = $("schoolName").value.trim();
-        state.info.subjectName = $("subjectName").value.trim();
-        state.info.gradeName = $("gradeName").value.trim();
-        renderAll();
-      });
-    });
-
-    // logo files
-    $("logoMinFile").addEventListener("change", (e)=>handleLogoUpload("min", e.target.files[0]));
-    $("logoSchFile").addEventListener("change", (e)=>handleLogoUpload("sch", e.target.files[0]));
-
-    // section files
-    $("file_plan_term").addEventListener("change", (e)=>handleSectionUpload("plan_term", e.target.files));
-    $("file_plan_week").addEventListener("change", (e)=>handleSectionUpload("plan_week", e.target.files));
-    $("file_records").addEventListener("change", (e)=>handleSectionUpload("records", e.target.files));
-    $("file_ads").addEventListener("change", (e)=>handleSectionUpload("ads", e.target.files));
-
-    renderAll();
-  })();
+['teacher','principal','school'].forEach(id=>{
+  document.getElementById(id).addEventListener('input',updateHeader);
+});
 </script>
+
 </body>
 </html>
