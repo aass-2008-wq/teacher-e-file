@@ -48,7 +48,7 @@
     margin:0;color:var(--blue);font-weight:800;font-size:28px;
   }
   .heroTop p{
-    margin:8px 0 0;color:var(--muted);font-size:14px;
+    margin:8px 0 ниц;color:var(--muted);font-size:14px;
   }
 
   .divider{height:4px;background:var(--blue);border-radius:999px;margin:14px 0 0}
@@ -76,7 +76,6 @@
     font-weight:800;
   }
 
-  /* الفورم مرتب للجوال: label فوق input دائمًا */
   .form{
     display:grid;
     gap:12px;
@@ -221,21 +220,34 @@
   #printArea{display:none}
 
   @media print{
+    @page { size: A4; margin: 0; } /* ✅ يقلل مفاجآت iOS */
     body{background:#fff;padding:0}
     .app{display:none !important;}
     #printArea{display:block !important;}
   }
 
+  /* ✅ إصلاح الصفحات الفارغة: نجعل الصفحة Flex + بدون ارتفاع ثابت للصورة */
   .p-page{
     width:210mm;
     min-height:297mm;
     padding:14mm 14mm 16mm 14mm;
     margin:0 auto;
     background:#fff;
-    page-break-after:always;
     position:relative;
+
+    display:flex;
+    flex-direction:column;
+
+    break-after: page;
+    page-break-after: always;
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
-  .p-page:last-child{page-break-after:auto}
+  .p-page:last-child,
+  .p-page:last-of-type{
+    break-after:auto;
+    page-break-after:auto;
+  }
 
   .p-header{
     display:flex;
@@ -244,6 +256,7 @@
     gap:10px;
     border-bottom:2px solid var(--blue);
     padding-bottom:8mm;
+    flex:0 0 auto;
   }
   .p-header img{
     height:22mm;width:auto;object-fit:contain;
@@ -263,6 +276,7 @@
     border:2px solid var(--blue);
     border-radius:18px;
     overflow:hidden;
+    flex:0 0 auto;
   }
   .p-coverTop{
     background:linear-gradient(135deg,var(--blue),var(--blue2));
@@ -299,6 +313,7 @@
     padding:10mm 6mm;
     border-radius:16px;
     background:linear-gradient(90deg, rgba(214,178,94,.10), rgba(11,45,92,.06));
+    flex:0 0 auto;
   }
   .p-sectionTitle h2{
     margin:0;
@@ -317,13 +332,16 @@
 
   .p-imgBox{
     margin-top:10mm;
-    height:235mm;
     border:1px solid #e5e7eb;
     border-radius:16px;
     padding:6mm;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
+    flex:1 1 auto;   /* ✅ يأخذ المساحة المتبقية */
+    min-height:0;    /* ✅ مهم لـ Safari */
   }
   .p-imgBox img{
     max-width:100%;
@@ -429,13 +447,11 @@
         <div id="thumbs_ads" class="thumbs"></div>
       </div>
 
-      <!-- يظهر فقط في الصفحة الرئيسية، ولن يظهر في الطباعة -->
       <div class="signature">برمجة وتنفيذ الأستاذ مقرن المطيري</div>
     </div>
   </div>
 </div>
 
-<!-- منطقة الطباعة فقط -->
 <div id="printArea"></div>
 
 <script>
@@ -527,7 +543,6 @@
     }catch(e){}
   }
 
-  // ✅ تعديل المطلوب: عنوان القسم يظهر مرة واحدة فقط لأول صورة بالقسم
   function buildPrint(){
     state.info.teacher = document.getElementById("teacher").value.trim();
     state.info.principal = document.getElementById("principal").value.trim();
@@ -540,7 +555,6 @@
     const print = document.getElementById("printArea");
     print.innerHTML = "";
 
-    // صفحة الغلاف
     const cover = document.createElement("div");
     cover.className = "p-page";
     cover.innerHTML = `
@@ -584,16 +598,13 @@
       {k:"ads", t:"الإعلانات"}
     ];
 
-    // صور الأقسام: كل صورة صفحة — العنوان مرة واحدة فقط
     for(const sec of order){
       const imgs = state.sections[sec.k] || [];
       for(let i=0; i<imgs.length; i++){
         const src = imgs[i];
-
         const page = document.createElement("div");
         page.className = "p-page";
 
-        // ✅ يظهر عنوان القسم فقط في أول صفحة من القسم
         const sectionTitleBlock = (i === 0) ? `
           <div class="p-sectionTitle">
             <h2>${sec.t}</h2>
@@ -638,7 +649,6 @@
       .replaceAll("'","&#039;");
   }
 
-  // wiring
   document.getElementById("f_term").addEventListener("change", e=>handleUpload("term", e.target.files));
   document.getElementById("f_week").addEventListener("change", e=>handleUpload("week", e.target.files));
   document.getElementById("f_records").addEventListener("change", e=>handleUpload("records", e.target.files));
