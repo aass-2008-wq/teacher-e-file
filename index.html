@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الملف الإلكتروني للمعلم</title>
+
+  <!-- Fonts & libs -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }
+    .primary-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); }
+
+    /* ✅ PDF pages MUST be renderable (not display:none) */
+    .pdf-page{
+      width: 210mm;
+      min-height: 297mm;
+      padding: 18mm 18mm 20mm 18mm;
+      background: #fff;
+      margin: 0 auto 10mm auto;
+      display: block;
+      box-sizing: border-box;
+      page-break-after: always;
+      position: relative;
+    }
+
+    /* ✅ keep PDF container off-screen but renderable */
+    #pdfOutput{
+      position: fixed;
+      left: -10000px;
+      top: 0;
+      width: 210mm;
+      z-index: -1;
+    }
+
+    .loader { border-top-color: #d4af37; animation: spin 1s linear infinite; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    /* Drag & Drop styles (desktop) */
+    .thumb { cursor: grab; user-select: none; }
+    .thumb:active { cursor: grabbing; }
+    .dragging { opacity: .55; transform: scale(.98); }
+    .drop-target { outline: 2px dashed #1e40af; outline-offset: 2px; }
+    .hint { font-size: 11px; color:#6b7280; margin-top:8px; }
+
+    /* ✅ Mobile reorder actions */
+    .mobile-actions{
+      display:none;
+      gap:6px;
+      margin-top:6px;
+      justify-content: center;
+    }
+    @media (hover: none) and (pointer: coarse){
+      .mobile-actions{ display:flex; }
+    }
+    .btn-mini{
+      font-size:11px;
+      padding:4px 8px;
+      border-radius:8px;
+      background:#eef2ff;
+      color:#1e40af;
+      border:1px solid #c7d2fe;
+    }
+    .btn-mini:active{ transform: scale(.98); }
+  </style>
+</head>
+
+<body class="p-4 md:p-8">
+
+  <div class="max-w-6xl mx-auto">
+
+    <!-- ✅ Header with logos -->
+    <header class="primary-gradient text-white p-6 md:p-8 rounded-2xl shadow-xl mb-8">
+      <div class="flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <img id="homeMinLogo" alt="شعار وزارة التعليم" class="h-14 w-auto bg-white/90 rounded-lg p-1" />
+          <div class="hidden md:block opacity-90 text-xs leading-5">وزارة التعليم</div>
+        </div>
+
+        <div class="text-center flex-1">
+          <h1 class="text-2xl md:text-3xl font-bold mb-1">الملف الإلكتروني للمعلم</h1>
+          <p class="opacity-80 text-sm">نظام تنظيم الوثائق التعليمية وتحويلها إلى PDF</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="hidden md:block opacity-90 text-xs leading-5 text-left">شعار المدرسة</div>
+          <img id="homeSchLogo" alt="شعار المدرسة" class="h-14 w-auto bg-white/90 rounded-lg p-1" />
+        </div>
+      </div>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-1 space-y-6">
+
+        <!-- Teacher form -->
+        <section class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-blue-800">
+          <h2 class="font-bold text-lg mb-4 border-b pb-2">بيانات المعلم</h2>
+          <div id="teacherForm" class="space-y-3 text-sm">
+            <input type="text" data-key="teacherName" placeholder="اسم المعلم" class="w-full p-2 border rounded">
+            <input type="text" data-key="principalName" placeholder="اسم مدير المدرسة" class="w-full p-2 border rounded">
+            <input type="text" data-key="school" placeholder="المدرسة" class="w-full p-2 border rounded">
+            <input type="text" data-key="subject" placeholder="المادة" class="w-full p-2 border rounded">
+            <input type="text" data-key="grade" placeholder="الصف" class="w-full p-2 border rounded">
+            <select data-key="semester" class="w-full p-2 border rounded">
+              <option value="">الفصل الدراسي</option>
+              <option>الفصل الأول</option>
+              <option>الفصل الثاني</option>
+              <option>الفصل الثالث</option>
+            </select>
+            <input type="text" data-key="year" placeholder="العام الدراسي (مثال: 1447هـ)" class="w-full p-2 border rounded">
+          </div>
+        </section>
+
+        <!-- Logos -->
+        <section class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-yellow-600">
+          <h2 class="font-bold text-lg mb-4 border-b pb-2">الشعارات</h2>
+          <div class="space-y-4 text-xs">
+            <div>
+              <label class="block mb-1">شعار وزارة التعليم (رابط أو ملف)</label>
+              <input type="text" id="logoMinUrl" placeholder="رابط URL الشعار" class="w-full p-2 border rounded mb-2">
+              <input type="file" id="logoMinFile" accept="image/*">
+            </div>
+            <hr>
+            <div>
+              <label class="block mb-1">شعار المدرسة (رابط أو ملف)</label>
+              <input type="text" id="logoSchUrl" placeholder="رابط URL الشعار" class="w-full p-2 border rounded mb-2">
+              <input type="file" id="logoSchFile" accept="image/*">
+            </div>
+          </div>
+        </section>
+
+        <!-- Actions -->
+        <div class="space-y-2">
+          <button onclick="generatePDF()" class="w-full bg-blue-700 text-white py-4 rounded-xl font-bold shadow-lg hover:bg-blue-800 transition">
+            تحميل ملف PDF النهائي
+          </button>
+
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="saveToLocal()" class="bg-green-600 text-white py-2 rounded-lg text-xs">حفظ البيانات</button>
+            <button onclick="clearLocal()" class="bg-red-500 text-white py-2 rounded-lg text-xs">تفريغ النموذج</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Main sections -->
+      <div class="lg:col-span-2 space-y-6">
+        <div id="mainSections" class="space-y-6"></div>
+      </div>
+
+    </div>
+
+    <!-- ✅ Footer on main page only (NOT exported to PDF) -->
+    <footer class="mt-10 text-center text-xs text-gray-500">
+      تنفيذ وبرمجة الأستاذ مقرن المطيري — <span class="font-bold text-gray-700">مقرن</span>
+    </footer>
+  </div>
+
+  <!-- PDF container offscreen -->
+  <div id="pdfOutput"></div>
+
+  <!-- Loader -->
+  <div id="loader" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50">
+    <div class="bg-white p-8 rounded-xl text-center">
+      <div class="loader w-12 h-12 border-4 rounded-full mx-auto mb-4"></div>
+      <p class="font-bold">جاري معالجة الصور وتوليد الملف...</p>
+    </div>
+  </div>
+
+  <script>
+    // ✅ fixed logo URLs (your provided links)
+    const DEFAULT_SCHOOL_LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/AdvEaEhDMUJTLIgK.png";
+    const DEFAULT_MOE_LOGO_URL    = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/FybNzBQEoqkSKFnG.png";
+
+    const sections = [
+      {id: 'plan_term', title: 'الخطة الفصلية'},
+      {id: 'plan_week', title: 'الخطة الأسبوعية'},
+      {id: 'records', title: 'سجلات المتابعة'},
+      {id: 'ads', title: 'إعلانات الفصول'}
+    ];
+
+    let sectionsData = { plan_term: [], plan_week: [], records: [], ads: [] };
+
+    // Drag & Drop state
+    const dnd = { fromSid: null, fromIndex: null };
+
+    window.onload = () => {
+      document.getElementById('logoSchUrl').value = DEFAULT_SCHOOL_LOGO_URL;
+      document.getElementById('logoMinUrl').value = DEFAULT_MOE_LOGO_URL;
+
+      refreshHomeLogos();
+      drawSections();
+      loadFromLocal();
+    };
+
+    document.addEventListener('input', (e) => {
+      if (e.target && (e.target.id === 'logoSchUrl' || e.target.id === 'logoMinUrl')) refreshHomeLogos();
+    });
+    document.addEventListener('change', async (e) => {
+      if (e.target && (e.target.id === 'logoSchFile' || e.target.id === 'logoMinFile')) refreshHomeLogos();
+    });
+
+    async function refreshHomeLogos(){
+      const minLogo = await getBase64(document.getElementById('logoMinFile').files[0]) || document.getElementById('logoMinUrl').value || "";
+      const schLogo = await getBase64(document.getElementById('logoSchFile').files[0]) || document.getElementById('logoSchUrl').value || "";
+      document.getElementById('homeMinLogo').src = minLogo;
+      document.getElementById('homeSchLogo').src = schLogo;
+    }
+
+    function drawSections() {
+      const container = document.getElementById('mainSections');
+      container.innerHTML = "";
+      sections.forEach(s => {
+        container.innerHTML += `
+          <div class="bg-white p-6 rounded-xl shadow-sm border-r-4 border-blue-900">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="font-bold text-blue-900 mb-2">${s.title}</h3>
+              <span class="hint">كمبيوتر: اسحب وأفلت — جوال: استخدم ⬆️⬇️</span>
+            </div>
+
+            <textarea id="note_${s.id}" class="w-full p-2 border rounded text-sm mb-4" placeholder="ملاحظات القسم..."></textarea>
+
+            <input type="file" multiple onchange="uploadImages(event, '${s.id}')" class="hidden" id="file_${s.id}">
+            <label for="file_${s.id}" class="cursor-pointer bg-gray-50 border-2 border-dashed border-gray-300 p-6 rounded-lg block text-center hover:bg-gray-100 mb-4">
+              <span class="text-gray-500 text-sm">اضغط هنا لرفع الصور</span>
+            </label>
+
+            <div id="preview_${s.id}" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2"></div>
+          </div>
+        `;
+      });
+    }
+
+    function uploadImages(e, sid) {
+      const files = e.target.files;
+      Array.from(files).forEach(f => {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          sectionsData[sid].push(ev.target.result);
+          renderPreviews(sid);
+        };
+        reader.readAsDataURL(f);
+      });
+      e.target.value = "";
+    }
+
+    function renderPreviews(sid) {
+      const div = document.getElementById(`preview_${sid}`);
+      div.innerHTML = '';
+
+      sectionsData[sid].forEach((src, idx) => {
+        const card = document.createElement('div');
+        card.className = "relative group border rounded p-1 bg-white thumb";
+        card.draggable = true;
+        card.dataset.sid = sid;
+        card.dataset.index = String(idx);
+
+        card.innerHTML = `
+          <img src="${src}" class="h-24 sm:h-20 w-full object-cover rounded" />
+          <button onclick="removeItem('${sid}', ${idx})"
+            class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 text-[11px]">X</button>
+
+          <!-- ✅ Mobile actions -->
+          <div class="mobile-actions">
+            <button class="btn-mini" onclick="moveItem('${sid}', ${idx}, -1)">⬆️</button>
+            <button class="btn-mini" onclick="moveItem('${sid}', ${idx}, 1)">⬇️</button>
+          </div>
+        `;
+
+        // Desktop drag events
+        card.addEventListener('dragstart', onDragStart);
+        card.addEventListener('dragend', onDragEnd);
+        card.addEventListener('dragover', onDragOver);
+        card.addEventListener('dragleave', onDragLeave);
+        card.addEventListener('drop', onDrop);
+
+        div.appendChild(card);
+      });
+    }
+
+    function moveItem(sid, idx, dir){
+      const arr = sectionsData[sid];
+      const newIndex = idx + dir;
+      if (newIndex < 0 || newIndex >= arr.length) return;
+
+      const [item] = arr.splice(idx, 1);
+      arr.splice(newIndex, 0, item);
+
+      renderPreviews(sid);
+    }
+
+    function onDragStart(ev){
+      const el = ev.currentTarget;
+      dnd.fromSid = el.dataset.sid;
+      dnd.fromIndex = Number(el.dataset.index);
+      el.classList.add('dragging');
+
+      ev.dataTransfer.effectAllowed = "move";
+      ev.dataTransfer.setData("text/plain", JSON.stringify({ sid: dnd.fromSid, index: dnd.fromIndex }));
+    }
+
+    function onDragEnd(ev){
+      ev.currentTarget.classList.remove('dragging');
+      document.querySelectorAll('.drop-target').forEach(x => x.classList.remove('drop-target'));
+      dnd.fromSid = null; dnd.fromIndex = null;
+    }
+
+    function onDragOver(ev){
+      ev.preventDefault();
+      ev.dataTransfer.dropEffect = "move";
+      ev.currentTarget.classList.add('drop-target');
+    }
+
+    function onDragLeave(ev){
+      ev.currentTarget.classList.remove('drop-target');
+    }
+
+    function onDrop(ev){
+      ev.preventDefault();
+      ev.currentTarget.classList.remove('drop-target');
+
+      let payload = null;
+      try { payload = JSON.parse(ev.dataTransfer.getData("text/plain") || ""); } catch(e){}
+
+      if (!payload || payload.sid == null) return;
+
+      const toEl = ev.currentTarget;
+      const toSid = toEl.dataset.sid;
+      const toIndex = Number(toEl.dataset.index);
+
+      // sort inside same section only
+      if (payload.sid !== toSid) return;
+
+      const arr = sectionsData[toSid];
+      const fromIndex = Number(payload.index);
+
+      if (fromIndex === toIndex) return;
+
+      const [moved] = arr.splice(fromIndex, 1);
+      arr.splice(toIndex, 0, moved);
+
+      renderPreviews(toSid);
+    }
+
+    function removeItem(sid, idx) {
+      sectionsData[sid].splice(idx, 1);
+      renderPreviews(sid);
+    }
+
+    async function getBase64(file) {
+      if (!file) return null;
+      return new Promise(res => {
+        const r = new FileReader();
+        r.onload = () => res(r.result);
+        r.readAsDataURL(file);
+      });
+    }
+
+    function collectInfo(){
+      const info = {};
+      document.querySelectorAll('#teacherForm [data-key]').forEach(i => info[i.getAttribute('data-key')] = i.value.trim());
+      return info;
+    }
+
+    async function generatePDF() {
+      document.getElementById('loader').classList.remove('hidden');
+
+      const output = document.getElementById('pdfOutput');
+      output.innerHTML = '';
+
+      const info = collectInfo();
+
+      const teacherName = info.teacherName || "";
+      const principalName = info.principalName || "";
+
+      const minLogo = await getBase64(document.getElementById('logoMinFile').files[0]) || document.getElementById('logoMinUrl').value || "";
+      const schLogo = await getBase64(document.getElementById('logoSchFile').files[0]) || document.getElementById('logoSchUrl').value || "";
+
+      let pageNo = 1;
+
+      // Cover
+      const cover = document.createElement('div');
+      cover.className = 'pdf-page flex flex-col justify-between items-center text-center border-[10px] border-blue-900 p-14';
+      cover.innerHTML = `
+        <div class="w-full flex justify-between items-center">
+          <img src="${minLogo}" class="h-16" crossorigin="anonymous">
+          <div class="font-bold text-base md:text-lg">
+            وزارة التعليم<br>${info.school || ''}
+          </div>
+          <img src="${schLogo}" class="h-16" crossorigin="anonymous">
+        </div>
+
+        <div class="w-full">
+          <h1 class="text-4xl font-bold text-blue-900 mb-3">الملف الإلكتروني للمعلم</h1>
+          <div class="h-1 w-40 bg-yellow-600 mx-auto mb-8"></div>
+
+          <div class="text-xl space-y-3 text-right bg-gray-50 p-8 rounded-2xl border">
+            <p><strong>اسم المعلم:</strong> ${teacherName}</p>
+            <p><strong>اسم مدير المدرسة:</strong> ${principalName}</p>
+            <p><strong>المادة الدراسية:</strong> ${info.subject || ''}</p>
+            <p><strong>الصف:</strong> ${info.grade || ''}</p>
+            <p><strong>الفصل الدراسي:</strong> ${info.semester || ''}</p>
+            <p><strong>العام الدراسي:</strong> ${info.year || ''}</p>
+          </div>
+        </div>
+
+        <div class="text-gray-400 text-xs">
+          صفحة ${pageNo++} — تاريخ الإصدار: ${new Date().toLocaleDateString('ar-SA')}
+        </div>
+      `;
+      output.appendChild(cover);
+
+      // Sections (ordered by current order)
+      for (let s of sections) {
+        if (sectionsData[s.id] && sectionsData[s.id].length > 0) {
+          const note = (document.getElementById(`note_${s.id}`)?.value || "").trim();
+
+          sectionsData[s.id].forEach((img, i) => {
+            const page = document.createElement('div');
+            page.className = 'pdf-page';
+
+            page.innerHTML = `
+              <div class="flex justify-between items-center border-b pb-3 mb-4">
+                <img src="${minLogo}" class="h-10" crossorigin="anonymous">
+                <div class="text-center">
+                  <div class="font-bold text-blue-900">${s.title}</div>
+                  <div class="text-[11px] text-gray-500">${info.school || ''} — ${teacherName}</div>
+                </div>
+                <img src="${schLogo}" class="h-10" crossorigin="anonymous">
+              </div>
+
+              ${(i === 0 && note) ? `<div class="bg-blue-50 p-4 border-r-4 border-blue-900 mb-4 text-sm">${note}</div>` : ''}
+
+              <div class="flex justify-center items-center" style="height: 235mm;">
+                <img src="${img}" class="max-w-full max-h-full object-contain" crossorigin="anonymous">
+              </div>
+
+              <div class="absolute bottom-6 left-0 right-0 text-center text-[10px] text-gray-400">
+                صفحة ${pageNo++} — ${new Date().toLocaleDateString('ar-SA')}
+              </div>
+            `;
+
+            output.appendChild(page);
+          });
+        }
+      }
+
+      const safeName = (teacherName || "بدون_اسم").replace(/[\\\/:*?"<>|]/g, "_");
+
+      const opt = {
+        margin: 0,
+        filename: `الملف_الالكتروني_${safeName}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, allowTaint: true, backgroundColor: "#ffffff" },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      try{
+        await html2pdf().set(opt).from(output).save();
+      } finally {
+        document.getElementById('loader').classList.add('hidden');
+      }
+    }
+
+    function saveToLocal() {
+      const info = collectInfo();
+      const notes = {};
+      sections.forEach(s => notes[s.id] = (document.getElementById(`note_${s.id}`)?.value || ""));
+
+      localStorage.setItem('teacher_data', JSON.stringify({
+        info,
+        sectionsData,
+        notes,
+        logos: {
+          logoMinUrl: document.getElementById('logoMinUrl').value || "",
+          logoSchUrl: document.getElementById('logoSchUrl').value || ""
+        }
+      }));
+      alert('تم الحفظ بنجاح');
+    }
+
+    function loadFromLocal() {
+      const raw = localStorage.getItem('teacher_data');
+      if (!raw) return;
+
+      const data = JSON.parse(raw || "{}");
+
+      document.querySelectorAll('#teacherForm [data-key]').forEach(i => {
+        const key = i.getAttribute('data-key');
+        i.value = (data.info && data.info[key]) ? data.info[key] : '';
+      });
+
+      if (data.sectionsData) sectionsData = data.sectionsData;
+
+      if (data.notes){
+        sections.forEach(s => {
+          const t = document.getElementById(`note_${s.id}`);
+          if (t) t.value = data.notes[s.id] || "";
+        });
+      }
+
+      if (data.logos){
+        document.getElementById('logoMinUrl').value = data.logos.logoMinUrl || DEFAULT_MOE_LOGO_URL;
+        document.getElementById('logoSchUrl').value = data.logos.logoSchUrl || DEFAULT_SCHOOL_LOGO_URL;
+      }
+
+      sections.forEach(s => renderPreviews(s.id));
+      refreshHomeLogos();
+    }
+
+    function clearLocal() {
+      if(confirm('سيتم حذف كل البيانات، هل أنت متأكد؟')) {
+        localStorage.clear();
+        location.reload();
+      }
+    }
+  </script>
+</body>
+</html>
