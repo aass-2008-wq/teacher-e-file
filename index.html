@@ -41,14 +41,12 @@
     width:90px;height:90px;object-fit:contain;
     background:#fff;border:1px solid var(--border);border-radius:18px;padding:10px;
   }
-  .heroTop .center{
-    text-align:center;
-  }
+  .heroTop .center{ text-align:center; }
   .heroTop h1{
     margin:0;color:var(--blue);font-weight:800;font-size:28px;
   }
   .heroTop p{
-    margin:8px 0 ниц;color:var(--muted);font-size:14px;
+    margin:8px 0 0;color:var(--muted);font-size:14px;
   }
 
   .divider{height:4px;background:var(--blue);border-radius:999px;margin:14px 0 0}
@@ -76,16 +74,9 @@
     font-weight:800;
   }
 
-  .form{
-    display:grid;
-    gap:12px;
-  }
+  .form{ display:grid; gap:12px; }
   .field label{
-    display:block;
-    font-weight:800;
-    font-size:14px;
-    color:#0f172a;
-    margin-bottom:6px;
+    display:block;font-weight:800;font-size:14px;color:#0f172a;margin-bottom:6px;
   }
   .field input{
     width:100%;
@@ -133,20 +124,12 @@
     margin-bottom:14px;
   }
   .sectionHead{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
     border-bottom:2px solid var(--gold);
-    padding-bottom:10px;
-    margin-bottom:12px;
+    padding-bottom:10px;margin-bottom:12px;
   }
-  .sectionHead h3{
-    margin:0;color:var(--blue);font-size:18px;font-weight:800;
-  }
-  .sectionHead span{
-    font-size:12px;color:var(--muted);
-  }
+  .sectionHead h3{margin:0;color:var(--blue);font-size:18px;font-weight:800;}
+  .sectionHead span{font-size:12px;color:var(--muted);}
 
   .uploadBox{
     border:2px dashed #cbd5e1;
@@ -156,16 +139,10 @@
     text-align:center;
   }
   .uploadBox label{
-    display:block;
-    cursor:pointer;
-    font-weight:800;
-    color:#334155;
+    display:block;cursor:pointer;font-weight:800;color:#334155;
   }
   .uploadBox small{
-    display:block;
-    margin-top:6px;
-    color:var(--muted);
-    font-weight:400;
+    display:block;margin-top:6px;color:var(--muted);font-weight:400;
   }
   .uploadBox input{display:none}
 
@@ -188,45 +165,28 @@
     border-radius:12px;
   }
   .actions{
-    display:flex;
-    gap:6px;
-    justify-content:center;
-    margin-top:8px;
-    flex-wrap:wrap;
+    display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap;
   }
   .mini{
-    padding:7px 10px;
-    border-radius:14px;
-    font-size:12px;
-    background:#eef2ff;
-    border:1px solid #c7d2fe;
-    color:#1e40af;
-    font-weight:800;
+    padding:7px 10px;border-radius:14px;font-size:12px;
+    background:#eef2ff;border:1px solid #c7d2fe;color:#1e40af;font-weight:800;
   }
-  .danger{
-    background:#fee2e2;
-    border-color:#fecaca;
-    color:#b91c1c;
-  }
+  .danger{background:#fee2e2;border-color:#fecaca;color:#b91c1c;}
 
   .signature{
-    text-align:center;
-    margin-top:14px;
-    color:#64748b;
-    font-size:12px;
+    text-align:center;margin-top:14px;color:#64748b;font-size:12px;
   }
 
   /* ====== الطباعة ====== */
   #printArea{display:none}
 
   @media print{
-    @page { size: A4; margin: 0; } /* ✅ يقلل مفاجآت iOS */
+    @page { size: A4; margin: 0; }
     body{background:#fff;padding:0}
     .app{display:none !important;}
     #printArea{display:block !important;}
   }
 
-  /* ✅ إصلاح الصفحات الفارغة: نجعل الصفحة Flex + بدون ارتفاع ثابت للصورة */
   .p-page{
     width:210mm;
     min-height:297mm;
@@ -250,26 +210,15 @@
   }
 
   .p-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
     border-bottom:2px solid var(--blue);
     padding-bottom:8mm;
     flex:0 0 auto;
   }
-  .p-header img{
-    height:22mm;width:auto;object-fit:contain;
-  }
-  .p-header .mid{
-    text-align:center;flex:1;
-  }
-  .p-header .mid h1{
-    margin:0;color:var(--blue);font-size:22px;font-weight:800;
-  }
-  .p-header .mid p{
-    margin:6px 0 0;color:#475569;font-size:12px;
-  }
+  .p-header img{height:22mm;width:auto;object-fit:contain;}
+  .p-header .mid{text-align:center;flex:1;}
+  .p-header .mid h1{margin:0;color:var(--blue);font-size:22px;font-weight:800;}
+  .p-header .mid p{margin:6px 0 0;color:#475569;font-size:12px;}
 
   .p-coverBox{
     margin-top:10mm;
@@ -284,9 +233,7 @@
     text-align:center;
     padding:10mm;
   }
-  .p-coverTop .big{
-    font-size:18px;font-weight:800;
-  }
+  .p-coverTop .big{font-size:18px;font-weight:800;}
   .p-coverGrid{
     display:grid;
     grid-template-columns:1fr 1fr 1fr;
@@ -299,26 +246,31 @@
     border-left:1px solid #e5e7eb;
   }
   .p-cell:last-child{border-left:none}
-  .p-cell .k{
-    color:#64748b;font-size:12px;font-weight:800;margin-bottom:6px;
-  }
-  .p-cell .v{
-    color:#0f172a;font-size:18px;font-weight:800;
+  .p-cell .k{color:#64748b;font-size:12px;font-weight:800;margin-bottom:6px;}
+  .p-cell .v{color:#0f172a;font-size:18px;font-weight:800;}
+
+  /* عنوان القسم (صفحة مستقلة) */
+  .p-only-title{
+    flex:1 1 auto;
+    min-height:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-top:10mm;
   }
 
   .p-sectionTitle{
-    margin-top:12mm;
+    width:100%;
     text-align:center;
     border-bottom:3px solid var(--gold);
-    padding:10mm 6mm;
+    padding:12mm 6mm;
     border-radius:16px;
     background:linear-gradient(90deg, rgba(214,178,94,.10), rgba(11,45,92,.06));
-    flex:0 0 auto;
   }
   .p-sectionTitle h2{
     margin:0;
     color:var(--blue);
-    font-size:34px;
+    font-size:40px;
     font-weight:800;
     letter-spacing:.3px;
   }
@@ -326,7 +278,7 @@
     display:block;
     margin-top:6mm;
     color:#64748b;
-    font-size:14px;
+    font-size:15px;
     font-weight:800;
   }
 
@@ -335,13 +287,11 @@
     border:1px solid #e5e7eb;
     border-radius:16px;
     padding:6mm;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
-    flex:1 1 auto;   /* ✅ يأخذ المساحة المتبقية */
-    min-height:0;    /* ✅ مهم لـ Safari */
+    flex:1 1 auto;
+    min-height:0;
   }
   .p-imgBox img{
     max-width:100%;
@@ -447,6 +397,7 @@
         <div id="thumbs_ads" class="thumbs"></div>
       </div>
 
+      <!-- يظهر فقط في الصفحة الرئيسية، ولن يظهر في الطباعة -->
       <div class="signature">برمجة وتنفيذ الأستاذ مقرن المطيري</div>
     </div>
   </div>
@@ -543,6 +494,7 @@
     }catch(e){}
   }
 
+  // ✅ تحديث: لكل قسم صفحة عنوان مستقلة ثم صفحات الصور فقط
   function buildPrint(){
     state.info.teacher = document.getElementById("teacher").value.trim();
     state.info.principal = document.getElementById("principal").value.trim();
@@ -555,6 +507,7 @@
     const print = document.getElementById("printArea");
     print.innerHTML = "";
 
+    // صفحة الغلاف
     const cover = document.createElement("div");
     cover.className = "p-page";
     cover.innerHTML = `
@@ -600,18 +553,36 @@
 
     for(const sec of order){
       const imgs = state.sections[sec.k] || [];
-      for(let i=0; i<imgs.length; i++){
-        const src = imgs[i];
-        const page = document.createElement("div");
-        page.className = "p-page";
+      if(imgs.length === 0) continue;
 
-        const sectionTitleBlock = (i === 0) ? `
+      // 1) صفحة عنوان القسم فقط
+      const titlePage = document.createElement("div");
+      titlePage.className = "p-page";
+      titlePage.innerHTML = `
+        <div class="p-header">
+          <img src="${moeLogo}" alt="وزارة التعليم">
+          <div class="mid">
+            <h1>الملف الإلكتروني للمعلم</h1>
+            <p>${escapeHtml(state.info.school || "")}</p>
+          </div>
+          <img src="${schLogo}" alt="شعار المدرسة">
+        </div>
+
+        <div class="p-only-title">
           <div class="p-sectionTitle">
             <h2>${sec.t}</h2>
             <span class="who">${escapeHtml(state.info.teacher || "")}</span>
           </div>
-        ` : "";
+        </div>
 
+        <div class="p-foot">تاريخ الطباعة: ${today}</div>
+      `;
+      print.appendChild(titlePage);
+
+      // 2) صفحات الصور فقط (بدون عنوان القسم)
+      for(const src of imgs){
+        const page = document.createElement("div");
+        page.className = "p-page";
         page.innerHTML = `
           <div class="p-header">
             <img src="${moeLogo}" alt="وزارة التعليم">
@@ -621,8 +592,6 @@
             </div>
             <img src="${schLogo}" alt="شعار المدرسة">
           </div>
-
-          ${sectionTitleBlock}
 
           <div class="p-imgBox">
             <img src="${src}" alt="صورة">
