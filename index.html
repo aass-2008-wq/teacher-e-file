@@ -16,11 +16,10 @@
     --muted:#6b7280;
     --bg:#f3f4f6;
   }
-
   *{box-sizing:border-box}
   body{font-family:'Tajawal',sans-serif;background:var(--bg);margin:0;padding:18px}
 
-  /* ====== واجهة الموقع ====== */
+  /* ===== Screen App ===== */
   .app{
     max-width:1100px;
     margin:auto;
@@ -28,54 +27,22 @@
     border-radius:18px;
     padding:18px;
   }
-
   .topbar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    padding:14px 14px 18px;
-    border-bottom:3px solid var(--blue);
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:14px 14px 18px;border-bottom:3px solid var(--blue);
   }
-
   .topbar img{
-    height:62px;
-    width:auto;
-    object-fit:contain;
-    background:#fff;
-    border-radius:12px;
-    padding:6px;
-    border:1px solid var(--border)
+    height:62px;width:auto;object-fit:contain;background:#fff;border-radius:12px;
+    padding:6px;border:1px solid var(--border)
   }
-
-  .title{
-    text-align:center;
-    flex:1;
-  }
-
-  .title h1{
-    margin:0;
-    font-size:26px;
-    color:var(--blue);
-    font-weight:800
-  }
-
-  .title p{
-    margin:6px 0 0;
-    color:var(--muted);
-    font-size:13px
-  }
+  .title{text-align:center;flex:1}
+  .title h1{margin:0;font-size:26px;color:var(--blue);font-weight:800}
+  .title p{margin:6px 0 0;color:var(--muted);font-size:13px}
 
   .grid{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:14px;
-    margin-top:16px;
+    display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px;
   }
-
-  @media(min-width:900px){
-    .grid{grid-template-columns:360px 1fr}
-  }
+  @media(min-width:900px){ .grid{grid-template-columns:380px 1fr} }
 
   .card{
     border:1px solid var(--border);
@@ -83,49 +50,57 @@
     padding:14px;
     background:#fff;
   }
+  .card h2{margin:0 0 12px;color:var(--blue);font-size:16px}
 
-  .card h2{
-    margin:0 0 12px;
-    color:var(--blue);
-    font-size:16px
+  /* ✅ FIXED FORM LAYOUT */
+  .form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
   }
-
-  label{font-weight:800;font-size:13px}
-
-  input[type="text"]{
+  .field{
+    display:flex;
+    flex-direction:column; /* mobile: label فوق input */
+    gap:6px;
+  }
+  .field label{
+    font-weight:800;
+    font-size:13px;
+    color:#0f172a;
+  }
+  .field input{
     width:100%;
-    padding:10px;
-    margin:6px 0 12px;
+    padding:12px 12px;
     border:1px solid #cfcfcf;
     border-radius:12px;
     font-family:'Tajawal';
+    font-size:14px;
   }
 
-  .btns{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:8px
+  @media(min-width:640px){
+    .field{
+      flex-direction:row;      /* desktop: label يمين + input يسار */
+      align-items:center;
+      gap:10px;
+    }
+    .field label{
+      min-width:120px;
+      text-align:right;
+      margin:0;
+      white-space:nowrap;
+    }
+    .field input{ flex:1 }
   }
 
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
   button{
-    border:none;
-    border-radius:14px;
-    padding:12px 14px;
-    font-family:'Tajawal';
-    cursor:pointer;
-    font-size:14px
+    border:none;border-radius:14px;padding:12px 14px;font-family:'Tajawal';
+    cursor:pointer;font-size:14px
   }
-
   .b-save{background:#16a34a;color:#fff}
   .b-clear{background:#dc2626;color:#fff}
   .b-print{background:#1e40af;color:#fff;flex:1}
-
-  .note{
-    font-size:12px;
-    color:var(--muted);
-    margin-top:8px
-  }
+  .note{font-size:12px;color:var(--muted);margin-top:8px}
 
   .section{
     border:1px solid var(--border);
@@ -134,106 +109,41 @@
     background:#fff;
     margin-bottom:14px;
   }
-
   .section-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
     border-bottom:2px solid var(--gold);
-    padding-bottom:10px;
-    margin-bottom:12px;
+    padding-bottom:10px;margin-bottom:12px;
   }
-
-  .section-head h3{
-    margin:0;
-    color:var(--blue);
-    font-size:18px
-  }
-
-  .section-head span{
-    font-size:12px;
-    color:var(--muted)
-  }
+  .section-head h3{margin:0;color:var(--blue);font-size:18px}
+  .section-head span{font-size:12px;color:var(--muted)}
 
   .upload{
-    border:2px dashed #cbd5e1;
-    border-radius:14px;
-    padding:14px;
-    background:#f9fafb;
-    text-align:center;
+    border:2px dashed #cbd5e1;border-radius:14px;padding:14px;background:#f9fafb;text-align:center;
   }
-
   .upload input{display:none}
-
-  .upload label{
-    display:block;
-    cursor:pointer;
-    font-weight:700;
-    color:#334155
-  }
-
-  .upload small{
-    display:block;
-    margin-top:6px;
-    color:var(--muted);
-    font-weight:400
-  }
+  .upload label{display:block;cursor:pointer;font-weight:700;color:#334155}
+  .upload small{display:block;margin-top:6px;color:var(--muted);font-weight:400}
 
   .thumbs{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-    gap:12px;
-    margin-top:12px;
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    gap:12px;margin-top:12px;
   }
-
   .thumb{
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:8px;
-    background:#fff;
+    border:1px solid var(--border);border-radius:14px;padding:8px;background:#fff;
   }
-
-  .thumb img{
-    width:100%;
-    height:140px;
-    object-fit:cover;
-    border-radius:10px
-  }
-
-  .actions{
-    display:flex;
-    gap:6px;
-    justify-content:center;
-    margin-top:8px;
-    flex-wrap:wrap
-  }
-
+  .thumb img{width:100%;height:140px;object-fit:cover;border-radius:10px}
+  .actions{display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap}
   .mini{
-    padding:6px 10px;
-    border-radius:12px;
-    font-size:12px;
-    background:#eef2ff;
-    border:1px solid #c7d2fe;
-    color:#1e40af
+    padding:6px 10px;border-radius:12px;font-size:12px;background:#eef2ff;border:1px solid #c7d2fe;color:#1e40af
   }
-
-  .danger{
-    background:#fee2e2;
-    border-color:#fecaca;
-    color:#b91c1c
-  }
+  .danger{background:#fee2e2;border-color:#fecaca;color:#b91c1c}
 
   .footer{
-    text-align:center;
-    margin-top:16px;
-    color:#6b7280;
-    font-size:12px;
+    text-align:center;margin-top:16px;color:#6b7280;font-size:12px;
   }
 
-  /* ====== الطباعة ====== */
+  /* ===== Print Area ===== */
   #printArea{display:none}
-
   @media print{
     body{background:#fff;padding:0}
     .app{display:none !important}
@@ -241,111 +151,67 @@
   }
 
   .p-page{
-    width:210mm;
-    min-height:297mm;
-    padding:14mm;
-    margin:0 auto;
-    background:#fff;
-    position:relative;
+    width:210mm;min-height:297mm;padding:14mm;margin:0 auto;background:#fff;position:relative;
     page-break-after:always;
   }
-
   .p-page:last-child{page-break-after:auto}
 
   .p-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    padding-bottom:10mm;
-    border-bottom:2px solid var(--blue);
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding-bottom:10mm;border-bottom:2px solid var(--blue);
   }
-
-  .p-header img{
-    height:22mm;
-    width:auto;
-    object-fit:contain
-  }
-
-  .p-header .p-title{
-    text-align:center;
-    flex:1
-  }
-
-  .p-header .p-title h1{
-    margin:0;
-    font-size:22px;
-    color:var(--blue);
-    font-weight:800
-  }
-
-  .p-header .p-title p{
-    margin:6px 0 0;
-    font-size:12px;
-    color:#475569
-  }
+  .p-header img{height:22mm;width:auto;object-fit:contain}
+  .p-header .p-title{text-align:center;flex:1}
+  .p-header .p-title h1{margin:0;font-size:22px;color:var(--blue);font-weight:800}
+  .p-header .p-title p{margin:6px 0 0;font-size:12px;color:#475569}
 
   .p-section-title{
-    margin-top:12mm;
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    border-bottom:2px solid var(--gold);
-    padding-bottom:4mm;
+    margin-top:12mm;display:flex;align-items:flex-end;justify-content:space-between;
+    border-bottom:2px solid var(--gold);padding-bottom:4mm;
   }
-
-  .p-section-title h2{
-    margin:0;
-    color:var(--blue);
-    font-size:18px;
-    font-weight:800
-  }
+  .p-section-title h2{margin:0;color:var(--blue);font-size:18px;font-weight:800}
 
   .p-image-box{
-    margin-top:10mm;
-    height:235mm;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border:1px solid #e5e7eb;
-    border-radius:14px;
-    padding:6mm;
+    margin-top:10mm;height:235mm;display:flex;align-items:center;justify-content:center;
+    border:1px solid #e5e7eb;border-radius:14px;padding:6mm;
   }
-
-  .p-image-box img{
-    max-width:100%;
-    max-height:100%;
-    object-fit:contain;
-  }
+  .p-image-box img{max-width:100%;max-height:100%;object-fit:contain}
 </style>
 </head>
 
 <body>
 
-<!-- واجهة الموقع -->
 <div class="app">
-
   <div class="topbar">
-    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/FybNzBQEoqkSKFnG.png">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/FybNzBQEoqkSKFnG.png" alt="شعار وزارة التعليم">
     <div class="title">
       <h1>الملف الإلكتروني للمعلم</h1>
-      <p>تنظيم ورفع صور الخطط والسجلات ثم حفظها PDF</p>
+      <p>ارفع صور الأقسام ثم اطبع واحفظ PDF بشكل رسمي</p>
     </div>
-    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/AdvEaEhDMUJTLIgK.png">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/AdvEaEhDMUJTLIgK.png" alt="شعار المدرسة">
   </div>
 
   <div class="grid">
     <div class="card">
       <h2>بيانات الملف</h2>
 
-      <label>اسم المعلم</label>
-      <input id="teacher">
+      <!-- ✅ مرتب على الجوال -->
+      <div class="form">
+        <div class="field">
+          <label for="teacher">اسم المعلم</label>
+          <input id="teacher" type="text" placeholder="مثال: مقرن المطيري">
+        </div>
 
-      <label>اسم مدير المدرسة</label>
-      <input id="principal">
+        <div class="field">
+          <label for="principal">اسم مدير المدرسة</label>
+          <input id="principal" type="text" placeholder="مثال: توفيق العقيلي">
+        </div>
 
-      <label>اسم المدرسة</label>
-      <input id="school">
+        <div class="field">
+          <label for="school">اسم المدرسة</label>
+          <input id="school" type="text" placeholder="مثال: مدرسة الإمام الشوكاني">
+        </div>
+      </div>
 
       <div class="btns">
         <button class="b-save" onclick="saveData()">حفظ البيانات</button>
@@ -357,11 +223,11 @@
     </div>
 
     <div>
-      <!-- الأقسام -->
       <div class="section">
         <div class="section-head"><h3>الخطة الفصلية</h3><span>ترتيب ⬆️⬇️</span></div>
         <div class="upload">
           <label for="f_term">رفع صور الخطة الفصلية</label>
+          <small>يمكن رفع أكثر من صورة</small>
           <input id="f_term" type="file" multiple accept="image/*">
         </div>
         <div id="thumbs_term" class="thumbs"></div>
@@ -371,6 +237,7 @@
         <div class="section-head"><h3>الخطة الأسبوعية</h3><span>ترتيب ⬆️⬇️</span></div>
         <div class="upload">
           <label for="f_week">رفع صور الخطة الأسبوعية</label>
+          <small>يمكن رفع أكثر من صورة</small>
           <input id="f_week" type="file" multiple accept="image/*">
         </div>
         <div id="thumbs_week" class="thumbs"></div>
@@ -380,6 +247,7 @@
         <div class="section-head"><h3>سجلات المتابعة</h3><span>ترتيب ⬆️⬇️</span></div>
         <div class="upload">
           <label for="f_records">رفع صور سجلات المتابعة</label>
+          <small>يمكن رفع أكثر من صورة</small>
           <input id="f_records" type="file" multiple accept="image/*">
         </div>
         <div id="thumbs_records" class="thumbs"></div>
@@ -389,22 +257,21 @@
         <div class="section-head"><h3>الإعلانات</h3><span>ترتيب ⬆️⬇️</span></div>
         <div class="upload">
           <label for="f_ads">رفع صور الإعلانات</label>
+          <small>يمكن رفع أكثر من صورة</small>
           <input id="f_ads" type="file" multiple accept="image/*">
         </div>
         <div id="thumbs_ads" class="thumbs"></div>
       </div>
 
-      <!-- التوقيع (واجهة فقط) -->
       <div class="footer">برمجة وتنفيذ الأستاذ مقرن المطيري</div>
     </div>
   </div>
 </div>
 
-<!-- منطقة الطباعة -->
 <div id="printArea"></div>
 
 <script>
-  const STORAGE_KEY = "teacher_e_file_final";
+  const STORAGE_KEY = "teacher_e_file_layout_fix";
 
   const state = {
     info:{teacher:"",principal:"",school:""},
@@ -457,9 +324,9 @@
   }
 
   function saveData(){
-    state.info.teacher=teacher.value;
-    state.info.principal=principal.value;
-    state.info.school=school.value;
+    state.info.teacher=teacher.value.trim();
+    state.info.principal=principal.value.trim();
+    state.info.school=school.value.trim();
     localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
     alert("تم الحفظ");
   }
@@ -476,16 +343,16 @@
     if(!raw)return;
     const d=JSON.parse(raw);
     Object.assign(state,d);
-    teacher.value=state.info.teacher;
-    principal.value=state.info.principal;
-    school.value=state.info.school;
+    teacher.value=state.info.teacher||"";
+    principal.value=state.info.principal||"";
+    school.value=state.info.school||"";
     ["term","week","records","ads"].forEach(renderThumbs);
   }
 
   function preparePrint(){
-    state.info.teacher=teacher.value;
-    state.info.principal=principal.value;
-    state.info.school=school.value;
+    state.info.teacher=teacher.value.trim();
+    state.info.principal=principal.value.trim();
+    state.info.school=school.value.trim();
 
     const moe="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/FybNzBQEoqkSKFnG.png";
     const sch="https://files.manuscdn.com/user_upload_by_module/session_file/310519663293570176/AdvEaEhDMUJTLIgK.png";
@@ -501,7 +368,8 @@
     ];
 
     for(const sec of order){
-      for(const img of state.sections[sec.k]){
+      const imgs = state.sections[sec.k] || [];
+      for(const img of imgs){
         const p=document.createElement("div");
         p.className="p-page";
         p.innerHTML=`
@@ -516,7 +384,9 @@
 
           <div class="p-section-title">
             <h2>${sec.t}</h2>
-            <div></div>
+            <div style="font-size:11px;color:#64748b;font-weight:700">
+              ${state.info.teacher||""}
+            </div>
           </div>
 
           <div class="p-image-box">
